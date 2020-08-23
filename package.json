@@ -1,8 +1,8 @@
 {
-  "name": "garytsai.github.io",
+  "name": "rvaccount",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://garytsai.github.io/garytsai.github.io/",
+  "homepage": "https://garytsai.github.io/rvaccount/",
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.26",
     "file-saver": "^2.0.2",
