@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./styles";
-import utils from "../../../utils/dateFormat";
+import utils from "../../utils/dateFormat";
 
 const initialState = {
   initYear: 2020,
@@ -23,9 +23,9 @@ export default class InputContent extends Component {
   setAnnualCost = result => {
     const cost = {};
     Object.keys(result).map((y) => {
-      let accumulator  = 0;
+      let accumulator = 0;
       Object.keys(result[y]).map((v, idx) =>
-        accumulator  += result[y][idx]
+        accumulator += result[y][idx]
       );
       return cost[y] = parseInt(accumulator);
     });
@@ -56,7 +56,7 @@ export default class InputContent extends Component {
     this.setAnnualCost(result);
   };
 
-  format = (y,idx) => y+'-'+('0'+(idx+1)).slice(-2);
+  format = (y, idx) => y + '-' + ('0' + (idx + 1)).slice(-2);
 
   componentDidMount() {
     this.annualMonthCost();
@@ -64,7 +64,7 @@ export default class InputContent extends Component {
 
   render() {
     const {AnnualCost, AnnualMonthCost} = this.state;
-    const { detailOfMonth} = this.props;
+    const {detailOfMonth} = this.props;
     return (
       <div style={{display: 'inline-block', textAlign: 'left', width: '100%'}}>
         {Object.keys(AnnualMonthCost).map((c, idx) => (
@@ -74,7 +74,7 @@ export default class InputContent extends Component {
             {Object.keys(AnnualMonthCost[c]).map((d, idx) => (
               AnnualMonthCost[c][idx] !== 0 &&
               <li style={{listStyleType: 'none', ...styles.styleOfMonth}} key={'monthOfCost' + idx}
-                  onClick={() => detailOfMonth(this.format(c,idx))}>{idx + 1 + '月 : ' + AnnualMonthCost[c][idx]}$NT</li>
+                  onClick={() => detailOfMonth(this.format(c, idx))}>{idx + 1 + '月 : ' + AnnualMonthCost[c][idx]}$NT</li>
             ))}
           </div>
         ))}

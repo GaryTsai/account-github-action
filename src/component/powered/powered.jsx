@@ -11,7 +11,6 @@ export default class Powered extends Component {
 
   getCurrentYear = () => new Date().getFullYear();
 
-
   componentDidMount() {
     this.setState({year: this.getCurrentYear()});
   }
@@ -21,22 +20,21 @@ export default class Powered extends Component {
 
     return (
       <div style={{
-        background: 'white',
         bottom: '0px',
-        position: 'absolute',
+        position: 'inherit',
         width: '100%',
         height: '40px'
       }}>
         <div style={{
           width: '100%',
-          maxWidth:'720px',
+          maxWidth: '720px',
           backgroundColor: 'white',
           background: '#ff7600',
           color: 'white',
           bottom: '0px',
           fontSize: '12px',
           textAlign: 'center',
-          position: 'relative',
+          position: 'fixed',
           padding: '1.5vh 0%'
         }}>Copyright© {year} Gary
           Tsai

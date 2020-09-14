@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import Header from './component/contents/header/header';
+import Header from './component/header/header';
 import Content from './component/contents/content';
 import LogIn from './component/login';
 import _isUndefined from 'lodash/isUndefined';
 import DailyExpense from './component/charts/dailyExpense';
 
 // import Workbook from './utils/workbook';
-import InputContent from './component/contents/inputContent/inputContent';
-import Powered from './component/contents/powered/powered';
-import DetailMonth from './component/contents/detailOfMonth/detailOfMonth';
-import TotalExpense from './component/contents/annualExpense/totalExpense';
+import InputContent from './component/inputContent/inputContent';
+import Powered from './component/powered/powered';
+import DetailMonth from './component/detailOfMonth/detailOfMonth';
+import TotalExpense from './component/annualExpense/totalExpense';
 import utils from './utils/dateFormat';
-import firebaseConfig from './settings/firebaseConfig';
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -25,6 +24,16 @@ import './App.css';
 // import {saveAs} from 'file-saver';
 // import XLSX from 'xlsx';
 
+const firebaseConfig= {
+  apiKey: process.env.REACT_APP_APP_KEY,
+  authDomain:process.env.REACT_APP_AUTHDOMAIN,
+  databaseURL:process.env.REACT_APP_DATABSEURL,
+  projectId:process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGEINGSENDERID,
+  appId:　process.env.REACT_APP_APPID,
+  measurementId: process.env.REACT_APP_MEASUREMENTID
+};
 
 const initialState = {
   inputContent: '',
@@ -66,11 +75,9 @@ export default class App extends Component {
     const {account} = this.state;
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
-
     this.loginRecord();
     const date = utils.dateFormat(new Date());
     this.getUserData(account, date);
-    console.log(date);
   };
 
   loginRecord = () =>{
@@ -157,13 +164,11 @@ export default class App extends Component {
     this.setState({monthOfBudget: budgetValue});
   };
 
-  changePage = status => {
-    console.log(status);
-    this.setState({route: status});
-  };
+  changePage = status => this.setState({route: status});
 
-  itemCallback = (datePickerDate, date) => {
-    this.setState({date: date, datePickerDate:datePickerDate});
+
+  itemCallback = (date) => {
+    this.setState({date: date, datePickerDate:date});
     this.updateItem(date);
   };
 
@@ -294,6 +299,7 @@ export default class App extends Component {
             margin: '0 auto',
             backgroundColor: 'whitesmoke',
             borderRadius: '5px',
+            height: '100vh'
           }}>
             {<Header logOut={this.logOut} route={route} changePage={this.changePage} />}
             {route === 'chart' &&

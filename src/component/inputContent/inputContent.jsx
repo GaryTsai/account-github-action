@@ -6,7 +6,7 @@ import {
   buildStyles
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import category from '../../../settings/category'
+import category from '../../settings/category'
 import styles from "./styles";
 // import DatePicker from "react-datepicker";
 import DatePicker from 'react-mobile-datepicker';
@@ -20,7 +20,7 @@ import "firebase/database";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-import utils from "../../../utils/dateFormat";
+import utils from "../../utils/dateFormat";
 
 const month = utils.toDualDigit(new Date().getMonth() + 1);
 const day = utils.toDualDigit(new Date().getDate());
@@ -43,8 +43,7 @@ class InputContent extends Component {
   itemCheck = () => {
     const {inputValue} = this.state;
 
-    if(!inputValue) return false;
-
+    if (!inputValue) return false;
     return true
   };
 
@@ -89,12 +88,12 @@ class InputContent extends Component {
 
   inputCategory = (value) => this.setState({inputCategory: value});
 
-
   monthOfCost = () => {
     const {items} = this.props;
     const {startDate} = this.state;
+    const newStartDate = new Date(startDate);
     let result = 0;
-    const whichMonth = startDate.getFullYear() + '-' + utils.toDualDigit(startDate.getMonth() + 1);
+    const whichMonth = newStartDate.getFullYear() + '-' + utils.toDualDigit(newStartDate.getMonth() + 1);
     let monthItems = items.filter(function (item) {
       return item.date.includes(whichMonth);
     });
@@ -112,7 +111,6 @@ class InputContent extends Component {
       return item.date.includes(recordDate);
     });
     Object.values(todayItems).map((c) => result += parseInt(c.itemValue));
-
     return result
   };
 
@@ -124,45 +122,31 @@ class InputContent extends Component {
     return;
   };
 
-  getFormatDate = date => {
-    const year = date.getFullYear();
-    const month = utils.toDualDigit(date.getMonth() + 1);
-    const day = utils.toDualDigit(date.getDate());
-
-    return year + '-' + month + '-' + day
-  };
-
   handleChange = date => {
-    this.props && this.props.itemCallback(date,this.getFormatDate(date));
-
+    this.props && this.props.itemCallback(date);
     this.setState({
       startDate: date,
-      recordDate: this.getFormatDate(date),
+      recordDate: date,
       isOpen: false
     });
   };
 
-  handleClick = () => {
-    this.setState({ isOpen: true });
-  }
+  handleCancel = () => this.setState({isOpen: false});
 
-  handleCancel = () => {
-    this.setState({ isOpen: false });
+
+  handleSelect = (time) => this.setState({time, isOpen: false});
+
+  handleClick = () => {
+    this.setState({isOpen: true});
   };
 
-  handleSelect = (time) => {
-    this.setState({ time, isOpen: false });
-  };
-  handleClick = () => {
-    this.setState({ isOpen: true });
-  }
   render() {
     const {items, monthOfBudget, datePickerDate} = this.props;
     const {startDate} = this.state;
-    const month = ((startDate.getMonth() + 1));
-    const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth()))+ 1 - day;
-    console.log(datePickerDate);
-    const percentage = ((parseInt(monthOfBudget)-this.monthOfCost())/parseInt(monthOfBudget)*100).toFixed(0)
+    var newStartDate = new Date(startDate);
+    const month = ((newStartDate.getMonth() + 1));
+    const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth())) + 1 - day;
+    const percentage = ((parseInt(monthOfBudget) - this.monthOfCost()) / parseInt(monthOfBudget) * 100).toFixed(0)
     return (
       <div>
         <div style={styles.mainExpense}>
@@ -171,54 +155,38 @@ class InputContent extends Component {
           <div style={styles.expenseOfStyle}>該日花費: <span style={styles.expense}>{this.todayOfCost(items)} $NT</span>
           </div>
           <div style={styles.expenseOfStyle}>實際支出: <span
-            style={styles.expense}>{(this.monthOfCost()/day).toFixed(0)} $NT/天</span></div>
+            style={styles.expense}>{(this.monthOfCost() / day).toFixed(0)} $NT/天</span></div>
         </div>
         <div style={styles.secondExpense}>
           <div style={styles.expenseOfStyle}>剩餘天數: <span
             style={styles.expense}>{remainDays} 天</span></div>
-          <div style={{ width: 65, height: 65 }}>
-            <CircularProgressbar   styles={buildStyles({
+          <div style={{width: 65, height: 65}}>
+            <CircularProgressbar styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
               rotation: 0.25,
-
               // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
               strokeLinecap: 'butt',
-
               // Text size
               textSize: '30px',
-
               // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
-
               // Can specify path transition in more detail, or remove it entirely
               // pathTransition: 'none',
-
               // Colors
               pathColor: `rgba(255, 120, 0, ${percentage / 20})`,
-              textColor: parseInt(percentage) > 0  ? '#ffffff' : '#f44336',
-              trailColor: parseInt(percentage) > 0  ? '#ffffff' : '#f44336',
-            })} strokeWidth={12} trailColor={'#ffffff'} value={percentage} text={`${percentage}%` } />
+              textColor: parseInt(percentage) > 0 ? '#ffffff' : '#f44336',
+              trailColor: parseInt(percentage) > 0 ? '#ffffff' : '#f44336',
+            })} strokeWidth={12} trailColor={'#ffffff'} value={percentage} text={`${percentage}%`}/>
           </div>
           <div style={styles.expenseOfStyle}>剩餘花費: <span
             style={styles.expense}>{monthOfBudget - this.monthOfCost()} $NT</span></div>
         </div>
         <div style={styles.inputBudget}>
-          {/*<DatePicker*/}
-          {/*  selected={datePickerDate}*/}
-          {/*  onChange={this.handleChange}*/}
-          {/*  onFocus={e=>{e.preventDefault();e.stopPropagation();}}*/}
-          {/*/>*/}
-          <a style={styles.time} key={'datePicker'}
-            onClick={this.handleClick}>
-            {this.state.recordDate}
-          </a>
-          <DatePicker
-            value={datePickerDate}
-            isOpen={this.state.isOpen}
-            onSelect={this.handleChange}
-            onCancel={this.handleCancel}
-            theme={'dark'}
-          />
+          <div className="col">
+            <input type="date" className="form-control" placeholder="日期"
+                   onChange={(c) => this.handleChange(c.target.value)} value={this.state.recordDate}/>
+          </div>
+
           <div style={{
             display: 'flex',
             justifyContent: ' center'
@@ -228,7 +196,7 @@ class InputContent extends Component {
                                                           value={monthOfBudget}
                                                           onChange={(c) => this.inputBudget(c.target.value)}/><span
             style={styles.span}> $NT</span></div>
-          <span style={{...styles.span, whiteSpace:'nowrap'}}>剩餘預算/天: <span
+          <span style={{...styles.span, whiteSpace: 'nowrap'}}>剩餘預算/天: <span
             style={styles.span}>{Math.round(((monthOfBudget - this.monthOfCost()) / remainDays))}</span><span
             style={styles.span}>元</span>
           </span>
@@ -256,4 +224,5 @@ class InputContent extends Component {
     )
   }
 }
+
 export default Radium(InputContent)

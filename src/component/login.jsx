@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from "./contents/inputContent/styles";
+import styles from "./inputContent/styles";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
