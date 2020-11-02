@@ -12,10 +12,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import utils from "../../utils/dateFormat";
 import styles from "./styles";
 
+
+
+
+
 am4core.useTheme(am4themes_animated);
 
 const initialState = {
-  dailyExpenseOfMonth: '',
+  dailyExpenseOfMonth:'',
   year: new Date().getFullYear(),
   time: new Date()
 };
@@ -54,15 +58,16 @@ class DailyExpense extends Component {
     this.state = initialState;
   }
 
-  componentDidMount() {
-    const date = new Date();
+  getMonthData = () =>{
     const {items} = this.props;
-    const dailyExpense = [];
-    const days = utils.days(date.getFullYear(), date.getMonth() + 1);
+    const {time} = this.state;
+    const dailyExpense =[];
+
+    const days =utils.days(time.getFullYear(),time.getMonth() + 1);
 
     let array = {};
     for (let d = 1; d <= days; d++) {
-      let dateOfTheMonth = date.getFullYear() + '-' + utils.toDualDigit(date.getMonth() + 1) + '-' + utils.toDualDigit(d);
+      let dateOfTheMonth = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1) + '-' + utils.toDualDigit(d);
       let filterMonthItem = items.filter(function (item) {
         return item.date.includes(dateOfTheMonth);
       });
@@ -70,16 +75,14 @@ class DailyExpense extends Component {
         array[d] = (filterMonthItem);
       }
     }
-    for (let i = 1; i < days; i++) {
-      let formatDate = date.getFullYear() + '-' + utils.toDualDigit(date.getMonth() + 1) + '-' + utils.toDualDigit(i);
+    for(let i = 1 ; i < days; i++) {
+      let formatDate = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1)+'-'+utils.toDualDigit(i);
       let daily = items.filter(function (item, index, array) {
         return item.date.includes(formatDate);
       });
       dailyExpense.push({
-        date: utils.toDualDigit(date.getMonth() + 1) + '-' + utils.toDualDigit(i),
-        dailyExpense: daily.reduce(function (accumulator, currentValue, currentIndex, array) {
-          return accumulator + parseInt(currentValue.itemValue);
-        }, 0)
+        date: utils.toDualDigit(time.getMonth() + 1)+'-'+utils.toDualDigit(i),
+        dailyExpense: daily.reduce(function(accumulator, currentValue, currentIndex, array){return accumulator + parseInt(currentValue.itemValue); }, 0)
       })
     }
 // Themes begin
@@ -95,22 +98,21 @@ class DailyExpense extends Component {
 
     prepareParetoData();
 
-    function prepareParetoData() {
+    function prepareParetoData(){
       var total = 0;
 
-      for (let i = 0; i < chart.data.length; i++) {
+      for(let i = 0; i < chart.data.length; i++){
         let value = chart.data[i].dailyExpense;
         total += value;
       }
 
       var sum = 0;
-      for (let i = 0; i < chart.data.length; i++) {
+      for(let i = 0; i < chart.data.length; i++){
         let value = chart.data[i].dailyExpense;
         sum += value;
         chart.data[i].pareto = sum / total * 100;
       }
     }
-
 // disabled
     chart.logo.disabled = true;
 // Create axes
@@ -119,6 +121,7 @@ class DailyExpense extends Component {
     categoryAxis.renderer.grid.template.location = 0;
     categoryAxis.renderer.minGridDistance = 60;
     categoryAxis.tooltip.disabled = true;
+
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.minWidth = 25;
     valueAxis.min = 0;
@@ -131,7 +134,9 @@ class DailyExpense extends Component {
     series.dataFields.categoryX = "date";
     series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
     series.columns.template.strokeWidth = 0;
+
     series.tooltip.pointerOrientation = "vertical";
+
     series.columns.template.column.cornerRadiusTopLeft = 10;
     series.columns.template.column.cornerRadiusTopRight = 10;
     series.columns.template.column.fillOpacity = 0.8;
@@ -142,11 +147,11 @@ class DailyExpense extends Component {
     hoverState.properties.cornerRadiusTopRight = 0;
     hoverState.properties.fillOpacity = 1;
 
-    series.columns.template.adapter.add("fill", function (fill, target) {
-      if (chart.data[target.dataItem.index].dailyExpense < 250)
-        return chart.colors.getIndex(1);
-      if (chart.data[target.dataItem.index].dailyExpense < 1000)
-        return chart.colors.getIndex(11);
+    series.columns.template.adapter.add("fill", function(fill, target) {
+      if(chart.data[target.dataItem.index].dailyExpense < 250)
+        return  chart.colors.getIndex(1);
+      if(chart.data[target.dataItem.index].dailyExpense < 1000)
+        return  chart.colors.getIndex(11);
       else
         return chart.colors.getIndex(10);
     });
@@ -171,9 +176,15 @@ class DailyExpense extends Component {
     paretoSeries.strokeWidth = 2;
     paretoSeries.stroke = new am4core.InterfaceColorSet().getFor("alternativeBackground");
     paretoSeries.strokeOpacity = 0.5;
+
 // Cursor
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.behavior = "panX";
+  }
+
+
+  componentDidMount() {
+    this.getMonthData();
   }
 
   componentWillUnmount() {
@@ -181,47 +192,42 @@ class DailyExpense extends Component {
       this.chart.dispose();
     }
   }
-
-  state = {
-    time: new Date(),
-    isOpen: false,
+  handleClick = () => {
+    this.setState({ isOpen: true });
   }
 
-  handleClick = () => this.setState({isOpen: true});
+  handleCancel = () => {
+    this.setState({ isOpen: false });
+  }
 
-  handleCancel = () => this.setState({isOpen: false});
+  handleSelect = (time) => {
+    this.setState({ time: new Date(time), isOpen: false });
+    setTimeout(()=>this.getMonthData());
+  }
 
-  handleSelect = (time) => this.setState({time, isOpen: false});
-
-  getChartHeight = () => {
+  getChartHeight = () =>{
     return window.innerHeight - 44 - 26.5 - 40
   };
-
   render() {
     const {year, time} = this.state;
     return (
-      <div style={{background: '#ffffff'}}>
+      <div style={{ background:'#ffffff'}}>
         <div className="App">
-          <a style={{cursor: 'pointer'}}
+          <a style={{ cursor:'pointer'}}
              onClick={this.handleClick}>
-            <div style={{
-              backgroundColor: '#b8dbff',
-              textAlign: 'center',
-              color: 'black',
-              fontSize: '20px', ...styles.selectTime
-            }}>{utils.dateFormat(time).slice(0, 7)}</div>
+            <div style={{ backgroundColor:'#b8dbff', textAlign:'center', color:'black', fontSize: '20px',...styles.selectTime}}>{utils.dateFormat(time).slice(0,7)}</div>
           </a>
+
           <DatePicker
             value={this.state.time}
             isOpen={this.state.isOpen}
             onSelect={this.handleSelect}
             dateConfig={dateConfig}
-            onCancel={this.handleCancel}/>
+            onCancel={this.handleCancel} />
         </div>
-        <div id="daily-expense" style={{width: "100%", height: this.getChartHeight()}}/>
+        <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight() }}/>
       </div>
     );
   }
 }
-
 export default Radium(DailyExpense);
