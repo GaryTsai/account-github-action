@@ -63,10 +63,16 @@ class DailyExpense extends Component {
     const {time} = this.state;
     const dailyExpense =[];
 
+    console.log(time.getFullYear());
+
+    console.log(time.getMonth() + 1);
+
     const days =utils.days(time.getFullYear(),time.getMonth() + 1);
 
     let array = {};
-    for (let d = 1; d <= days; d++) {
+    console.log(days);
+
+    for (let d = 0; d <= days; d++) {
       let dateOfTheMonth = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1) + '-' + utils.toDualDigit(d);
       let filterMonthItem = items.filter(function (item) {
         return item.date.includes(dateOfTheMonth);
@@ -75,7 +81,7 @@ class DailyExpense extends Component {
         array[d] = (filterMonthItem);
       }
     }
-    for(let i = 1 ; i < days; i++) {
+    for(let i = 1 ; i <= days; i++) {
       let formatDate = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1)+'-'+utils.toDualDigit(i);
       let daily = items.filter(function (item, index, array) {
         return item.date.includes(formatDate);
