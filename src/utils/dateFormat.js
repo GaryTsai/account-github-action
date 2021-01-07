@@ -1,4 +1,5 @@
-const daysOfMonth = [0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const daysOfMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
 const utils = {
   dateFormat: date =>{
     const year =  date.getFullYear();
