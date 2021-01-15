@@ -35,7 +35,7 @@ export default {
     backgroundColor: 'rgb(135, 223, 194)',
     boxSizing: 'border-box',
     padding: '0% 1%',
-    justifyContent: 'center'
+    justifyContent: 'initial'
   },
   styleOfItem: {
     width:'100%',
@@ -49,5 +49,9 @@ export default {
     padding: '0% 1%',
     borderBottom: '1px solid gray',
     justifyContent: 'space-between'
+  },
+  dailyCost: {
+    color: "#C81400",
+    whiteSpace:'pre'
   }
 }

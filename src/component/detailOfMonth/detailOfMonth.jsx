@@ -38,6 +38,15 @@ export default class DetailOfMonth extends Component {
     this.setState({monthItems: array});
   };
 
+  dailyCost = (cost_data) =>{
+    let total_cost = 0;
+    cost_data.map((c, idx) => (
+      total_cost += parseInt(c.itemValue)
+    ));
+
+    return total_cost;
+  };
+
   componentDidMount() {
     const {annualMonth, items} = this.props;
     this.showDetailOfMonth(items, annualMonth);
@@ -46,13 +55,13 @@ export default class DetailOfMonth extends Component {
   render() {
     const {monthItems} = this.state;
     const {annualMonth} = this.props;
-
+    console.log(monthItems);
     return (
       <div style={{display: 'inline-block', textAlign: 'left', width: '100%'}}>
         <li style={{listStyleType: 'none', ...styles.styleOfYearMonth}}>{annualMonth}</li>
         {Object.keys(monthItems).reverse().map((c, idx) => (
           <div key={'monthCost' + idx}>
-            <li style={{listStyleType: 'none', ...styles.styleOfDate}}>{c}</li>
+            <li style={{listStyleType: 'none', ...styles.styleOfDate}}>{c+ ' :'}<div style={styles.dailyCost} >{'    ' + this.dailyCost(monthItems[c])}</div></li>
             {Object.keys(monthItems[c]).reverse().map((item, idx2) => (
               <li style={{listStyleType: 'none', ...styles.styleOfItem}} key={'item' + idx2}>
                 <span>{monthItems[c][item].itemClass + ':'}</span>
