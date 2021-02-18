@@ -69,6 +69,11 @@ class InputContent extends Component {
       itemValue: this.state.inputValue
     }).then(function () {
       console.log("新增Post成功");
+      gtag('event', 'InsertItem', {
+        'event_category': 'expense',
+        'event_label': 'daily',
+      });
+
     }).catch(function (err) {
       console.error("新增Post錯誤：", err);
     });
