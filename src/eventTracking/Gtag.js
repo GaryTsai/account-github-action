@@ -62,7 +62,8 @@ export default class GTAG {
   pageview = page_path => this.event('pageview', page_path);
 
   event = (event_category, event_action, event_label, value) => {
-    console.log(this.trackerId);
+    var dimensionValue = event_category.toString();
+    Gtag('set', 'dimension1', dimensionValue);
     Gtag('event', event_action, {
       event_category,
       event_label,
