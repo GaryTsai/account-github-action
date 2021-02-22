@@ -55,7 +55,7 @@ export default class DetailOfMonth extends Component {
   render() {
     const {monthItems} = this.state;
     const {annualMonth} = this.props;
-    console.log(monthItems);
+
     return (
       <div style={{display: 'inline-block', textAlign: 'left', width: '100%'}}>
         <li style={{listStyleType: 'none', ...styles.styleOfYearMonth}}>{annualMonth}</li>

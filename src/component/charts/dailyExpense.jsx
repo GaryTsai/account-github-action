@@ -63,14 +63,9 @@ class DailyExpense extends Component {
     const {time} = this.state;
     const dailyExpense =[];
 
-    console.log(time.getFullYear());
-
-    console.log(time.getMonth() + 1);
-
     const days =utils.days(time.getFullYear(),time.getMonth() + 1);
 
     let array = {};
-    console.log(days);
 
     for (let d = 0; d <= days; d++) {
       let dateOfTheMonth = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1) + '-' + utils.toDualDigit(d);

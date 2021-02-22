@@ -8,7 +8,8 @@ import "firebase/database";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-
+import Gtag from './../eventTracking/Gtag';
+const tracker = new Gtag();
 const initialState = {
   account:'',
   password:'',
@@ -47,6 +48,7 @@ export default class Login extends Component {
         return ;
       }
       localStorage.setItem('account', account);
+      tracker.event('account', 'login', account.toString());
       loginCallback && loginCallback(account);
     });
   };
@@ -65,6 +67,7 @@ export default class Login extends Component {
           console.error("register error", err);
         });
         localStorage.setItem('account', account);
+        tracker.event('account', 'register', account.toString());
         loginCallback && loginCallback(account);
         //account is exist
       }else if(snapshot.val().password !== ""){

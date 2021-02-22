@@ -23,7 +23,8 @@ import "firebase/firestore";
 import './App.css';
 // import {saveAs} from 'file-saver';
 // import XLSX from 'xlsx';
-
+import Gtag from './eventTracking/Gtag';
+const tracker = new Gtag();
 const firebaseConfig= {
   apiKey: process.env.REACT_APP_APP_KEY,
   authDomain:process.env.REACT_APP_AUTHDOMAIN,
@@ -89,6 +90,7 @@ export default class App extends Component {
 
   logOut = () =>{
     localStorage.removeItem('account');
+    tracker.event('account', 'logOut', this.state.account.toString());
     this.setState({account:'', route:'login'})
   };
 
@@ -139,6 +141,7 @@ export default class App extends Component {
 
   updateItem = date => {
     const {account} = this.state;
+    tracker.event('item', 'edit', date.toString());
     this.getUserData(account, date);
   };
 
@@ -146,6 +149,7 @@ export default class App extends Component {
     const {date, account} = this.state;
     let delRef = firebase.database().ref(`/expense/${account}` );
     delRef.child(`${timestamp}`).remove().then(function () {
+      tracker.event('item', 'delete', date.toString());
       console.log("刪除成功");
     }).catch(function (err) {
       console.error("刪除錯誤：", err);
@@ -164,8 +168,10 @@ export default class App extends Component {
     this.setState({monthOfBudget: budgetValue});
   };
 
-  changePage = status => this.setState({route: status});
-
+  changePage = status => {
+    tracker.event('changePage', status.toString());
+    this.setState({route: status});
+  }
 
   itemCallback = (date) => {
     this.setState({date: date, datePickerDate:date});
@@ -186,6 +192,7 @@ export default class App extends Component {
         array[d] = (filterMonthItem);
       }
     }
+    tracker.event('detailOfMonth', 'click', dateAndMonth.toString());
     this.setState({route: 'detailOfMonth', monthItems:array, annualMonth: dateAndMonth});
   };
 

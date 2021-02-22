@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import Gtag from './../../eventTracking/Gtag';
 import Radium from "radium";
 import {
   CircularProgressbar,
@@ -24,6 +25,7 @@ import utils from "../../utils/dateFormat";
 
 const month = utils.toDualDigit(new Date().getMonth() + 1);
 const day = utils.toDualDigit(new Date().getDate());
+const tracker = new Gtag();
 const initialState = {
   inputCategory: '早餐',
   inputContent: '',
@@ -69,11 +71,7 @@ class InputContent extends Component {
       itemValue: this.state.inputValue
     }).then(function () {
       console.log("新增Post成功");
-      gtag('event', 'InsertItem', {
-        'event_category': 'expense',
-        'event_label': 'daily',
-      });
-
+      tracker.event('expense', 'insertItem')
     }).catch(function (err) {
       console.error("新增Post錯誤：", err);
     });
@@ -129,6 +127,7 @@ class InputContent extends Component {
 
   handleChange = date => {
     this.props && this.props.itemCallback(date);
+    tracker.event('datePicker', 'click', date.toString());
     this.setState({
       startDate: date,
       recordDate: date,
