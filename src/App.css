@@ -1,6 +1,6 @@
 .App-header {
   background-color: #DCDCDC	;
-  min-height: 95.5vh;
+  min-height: calc(95.5vh - 4px);
   min-width: 360px;
   max-width: 720px;
   width:100%;
@@ -9,6 +9,8 @@
   color: white;
   font-family: Microsoft JhengHei;
   margin: 0 auto;
+  border: 2px solid #4a81f3;
+  box-sizing: border-box;
 }
 .App {
   min-width: 360px;

@@ -32,7 +32,7 @@ export default class Login extends Component {
   inputPassword = (password) => this.setState({password: password});
 
   loginCheck = (account,pwd) =>{
-    const {loginCallback} = this.props;
+    const {loginCallback, eventEmitter} = this.props;
     if(!account&&!pwd ){
       this.setState({error:true, message:'Please input account&password'});
       return ;
@@ -48,13 +48,13 @@ export default class Login extends Component {
         return ;
       }
       localStorage.setItem('account', account);
-      tracker.event('account', 'login', account.toString());
+      eventEmitter.dispatch('accountLogIn',  account.toString());
       loginCallback && loginCallback(account);
     });
   };
 
   register = (account,pwd) =>{
-    const {loginCallback} = this.props;
+    const {loginCallback, eventEmitter} = this.props;
     //check if account is exist
     let checkLogin = firebase.database().ref(`/account/${account}`);
     checkLogin.once('value').then((snapshot) => {
@@ -67,7 +67,7 @@ export default class Login extends Component {
           console.error("register error", err);
         });
         localStorage.setItem('account', account);
-        tracker.event('account', 'register', account.toString());
+        eventEmitter.dispatch('accountRegister',  account.toString());
         loginCallback && loginCallback(account);
         //account is exist
       }else if(snapshot.val().password !== ""){

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Gtag from './../../eventTracking/Gtag';
 import Radium from "radium";
 import {
   CircularProgressbar,
@@ -25,7 +24,6 @@ import utils from "../../utils/dateFormat";
 
 const month = utils.toDualDigit(new Date().getMonth() + 1);
 const day = utils.toDualDigit(new Date().getDate());
-const tracker = new Gtag();
 const initialState = {
   inputCategory: '早餐',
   inputContent: '',
@@ -50,7 +48,7 @@ class InputContent extends Component {
   };
 
   submitContent = () => {
-    const {updateItemCallback, items, account} = this.props;
+    const {updateItemCallback, items, account, eventEmitter} = this.props;
     const {recordDate} = this.state;
     if (!this.itemCheck()) {
       return;
@@ -71,11 +69,10 @@ class InputContent extends Component {
       itemValue: this.state.inputValue
     }).then(function () {
       console.log("新增Post成功");
-      tracker.event('expense', 'insertItem')
     }).catch(function (err) {
       console.error("新增Post錯誤：", err);
     });
-
+    eventEmitter.dispatch('expense', 'insertItem');
     this.setState({inputContent: '', inputValue: ''});
     updateItemCallback && updateItemCallback(recordDate);
   };
@@ -126,8 +123,9 @@ class InputContent extends Component {
   };
 
   handleChange = date => {
+    const {eventEmitter} = this.props;
     this.props && this.props.itemCallback(date);
-    tracker.event('datePicker', 'click', date.toString());
+    eventEmitter.dispatch('datePicker', date.toString());
     this.setState({
       startDate: date,
       recordDate: date,
@@ -143,6 +141,7 @@ class InputContent extends Component {
   handleClick = () => {
     this.setState({isOpen: true});
   };
+  isSmallDevices = () => window.screen.width < 410;
 
   render() {
     const {items, monthOfBudget, datePickerDate} = this.props;
@@ -154,16 +153,16 @@ class InputContent extends Component {
     return (
       <div>
         <div style={styles.mainExpense}>
-          <div style={styles.expenseOfStyle}>{month} 月花費: <span style={styles.expense}>{this.monthOfCost()} $NT</span>
+          <div style={styles.expenseOfStyle}>{month} 月花費: <span style={styles.expense}>{this.monthOfCost()} <span style={styles.unit}>$NT</span></span>
           </div>
-          <div style={styles.expenseOfStyle}>該日花費: <span style={styles.expense}>{this.todayOfCost(items)} $NT</span>
+          <div style={styles.expenseOfStyle}>該日花費: <span style={styles.expense}>{this.todayOfCost(items)} <span style={styles.unit}>$NT</span></span>
           </div>
           <div style={styles.expenseOfStyle}>實際支出: <span
-            style={styles.expense}>{(this.monthOfCost() / day).toFixed(0)} $NT/天</span></div>
+            style={styles.expense}>{(this.monthOfCost() / day).toFixed(0)} <span style={styles.unit}>$NT/天</span></span></div>
         </div>
         <div style={styles.secondExpense}>
           <div style={styles.expenseOfStyle}>剩餘天數: <span
-            style={styles.expense}>{remainDays} 天</span></div>
+            style={styles.expense}>{remainDays} <span style={styles.unit}>天</span></span></div>
           <div style={{width: 65, height: 65}}>
             <CircularProgressbar styles={buildStyles({
               // Rotation of path and trail, in number of turns (0-1)
@@ -177,13 +176,13 @@ class InputContent extends Component {
               // Can specify path transition in more detail, or remove it entirely
               // pathTransition: 'none',
               // Colors
-              pathColor: `rgba(255, 120, 0, ${percentage / 20})`,
-              textColor: parseInt(percentage) > 0 ? '#ffffff' : '#f44336',
-              trailColor: parseInt(percentage) > 0 ? '#ffffff' : '#f44336',
+              pathColor: `rgba(232, 115, 24, ${percentage / 20})`,
+              textColor: parseInt(percentage) > 0 ? 'rgb(206 90 0)' : '#f44336',
+              trailColor: parseInt(percentage) > 0 ? '#9e9e9e' : '#f44336',
             })} strokeWidth={12} trailColor={'#ffffff'} value={percentage} text={`${percentage}%`}/>
           </div>
           <div style={styles.expenseOfStyle}>剩餘花費: <span
-            style={styles.expense}>{monthOfBudget - this.monthOfCost()} $NT</span></div>
+            style={styles.remaining}>{monthOfBudget - this.monthOfCost()} <span style={styles.unit}>$NT</span></span></div>
         </div>
         <div style={styles.inputBudget}>
           <div className="col">
@@ -191,20 +190,38 @@ class InputContent extends Component {
                    onChange={(c) => this.handleChange(c.target.value)} value={this.state.recordDate}/>
           </div>
 
-          <div style={{
+          {!this.isSmallDevices() && <div style={{
             display: 'flex',
-            justifyContent: ' center'
+            justifyContent: ' center',
           }}>
-            <span style={styles.span}>預估預算: </span><input type="text"
-                                                          style={styles.styleOfInput}
-                                                          value={monthOfBudget}
-                                                          onChange={(c) => this.inputBudget(c.target.value)}/><span
-            style={styles.span}> $NT</span></div>
-          <span style={{...styles.span, whiteSpace: 'nowrap'}}>剩餘預算/天: <span
+            <span style={styles.span}>預估預算: </span>
+            <input type="text"
+                   style={styles.styleOfInput}
+                   value={monthOfBudget}
+                   onChange={(c) => this.inputBudget(c.target.value)}/>
+                   <span style={styles.span}> $NT</span>
+          </div>}
+          {!this.isSmallDevices() &&<span style={{...styles.span, whiteSpace: 'nowrap'}}>剩餘預算/天: <span
+            style={styles.span}>{Math.round(((monthOfBudget - this.monthOfCost()) / remainDays))}</span><span
+            style={styles.span}>元</span>
+          </span>}
+        </div>
+        {this.isSmallDevices() &&<div style={{...styles.inputBudget, borderTop: '1px solid black'}}>
+          <div style={{
+            width: '50%'
+          }}>
+            <span style={styles.span}>預估預算: </span>
+            <input type="text"
+                   style={styles.styleOfInput}
+                   value={monthOfBudget}
+                   onChange={(c) => this.inputBudget(c.target.value)}/>
+            <span style={styles.span}> $NT</span>
+          </div>
+          <span style={{...styles.span, width: '50%', whiteSpace: 'nowrap'}}>剩餘預算/天: <span
             style={styles.span}>{Math.round(((monthOfBudget - this.monthOfCost()) / remainDays))}</span><span
             style={styles.span}>元</span>
           </span>
-        </div>
+        </div>}
         <div style={styles.inputContainer}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%'}}>
             <label style={styles.inputTitle}>類別: </label>

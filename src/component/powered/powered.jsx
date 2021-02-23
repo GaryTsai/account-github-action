@@ -26,12 +26,12 @@ export default class Powered extends Component {
         height: '40px'
       }}>
         <div style={{
-          width: '100%',
-          maxWidth: '720px',
+          width: 'calc(100% - 4px)',
+          maxWidth: '716px',
           backgroundColor: 'white',
           background: '#ff7600',
           color: 'white',
-          bottom: '0px',
+          bottom: '2px',
           fontSize: '12px',
           textAlign: 'center',
           position: 'fixed',

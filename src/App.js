@@ -21,10 +21,13 @@ import "firebase/auth";
 import "firebase/firestore";
 
 import './App.css';
+import eventEmitter from './eventTracking/eventEmitter';
+import eventTracking from './eventTracking/eventTracking';
+
 // import {saveAs} from 'file-saver';
 // import XLSX from 'xlsx';
-import Gtag from './eventTracking/Gtag';
-const tracker = new Gtag();
+// import Gtag from './eventTracking/Gtag';
+// const tracker = new Gtag();
 const firebaseConfig= {
   apiKey: process.env.REACT_APP_APP_KEY,
   authDomain:process.env.REACT_APP_AUTHDOMAIN,
@@ -53,11 +56,11 @@ const initialState = {
   datePickerDate: new Date()
 };
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
+    new eventTracking();
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
@@ -90,7 +93,7 @@ export default class App extends Component {
 
   logOut = () =>{
     localStorage.removeItem('account');
-    tracker.event('account', 'logOut', this.state.account.toString());
+    eventEmitter.dispatch('accountLogOut', this.state.account.toString());
     this.setState({account:'', route:'login'})
   };
 
@@ -141,7 +144,8 @@ export default class App extends Component {
 
   updateItem = date => {
     const {account} = this.state;
-    tracker.event('item', 'edit', date.toString());
+    eventEmitter.dispatch('itemEdit', date.toString());
+
     this.getUserData(account, date);
   };
 
@@ -149,7 +153,7 @@ export default class App extends Component {
     const {date, account} = this.state;
     let delRef = firebase.database().ref(`/expense/${account}` );
     delRef.child(`${timestamp}`).remove().then(function () {
-      tracker.event('item', 'delete', date.toString());
+      eventEmitter.dispatch('itemDelete', date.toString());
       console.log("刪除成功");
     }).catch(function (err) {
       console.error("刪除錯誤：", err);
@@ -169,7 +173,7 @@ export default class App extends Component {
   };
 
   changePage = status => {
-    tracker.event('changePage', status.toString());
+    eventEmitter.dispatch('changePage', [status.toString()]);
     this.setState({route: status});
   }
 
@@ -192,7 +196,7 @@ export default class App extends Component {
         array[d] = (filterMonthItem);
       }
     }
-    tracker.event('detailOfMonth', 'click', dateAndMonth.toString());
+    eventEmitter.dispatch('detailOfMonth', dateAndMonth.toString());
     this.setState({route: 'detailOfMonth', monthItems:array, annualMonth: dateAndMonth});
   };
 
@@ -280,7 +284,7 @@ export default class App extends Component {
 
     return (
       <div className="App" style={{
-        height: window.innerHeight,
+        height: window.innerHeight - '4px',
         margin: '0 auto',
         fontFamily: 'cursive'
       }}>
@@ -299,20 +303,19 @@ export default class App extends Component {
           backgroundSize: '100%',
           top: 'calc(50% - 50px)'
         }} src={require('./assets/img/loading.gif')}/></div>}
-        <div>{route ==='login' && <LogIn loginCallback={this.login}/>}</div>
-        <header className="App-header">
+        <div>{route ==='login' && <LogIn eventEmitter={eventEmitter} loginCallback={this.login}/>}</div>
+        <header  style={{height: window.innerHeight}} className="App-header">
           <div style={{
             width: '100%',
             margin: '0 auto',
             backgroundColor: 'whitesmoke',
             borderRadius: '5px',
-            height: '100vh'
           }}>
             {<Header logOut={this.logOut} route={route} changePage={this.changePage} />}
             {route === 'chart' &&
-            <DailyExpense items={allItems}  itemCallback={this.itemCallback}  month={month} monthItems={this.state.monthItems} datePickerDate={datePickerDate}/>}
+            <DailyExpense eventEmitter={eventEmitter} items={allItems}  itemCallback={this.itemCallback}  month={month} monthItems={this.state.monthItems} datePickerDate={datePickerDate}/>}
             {route === 'record' &&
-            <InputContent items={allItems} monthOfBudget={monthOfBudget} account={account} setBudgetCallback={this.setBudget}  updateItemCallback={this.updateItem} dateTime={date}
+            <InputContent eventEmitter={eventEmitter} items={allItems} monthOfBudget={monthOfBudget} account={account} setBudgetCallback={this.setBudget}  updateItemCallback={this.updateItem} dateTime={date}
             itemCallback={this.itemCallback} datePickerDate={datePickerDate}/>}
             {route === 'record'  &&
             <Content items={todayItems} updateItemCallback={this.updateItem}deleteCallback={this.deleteItem} dateTime={date} account={account}/>}

@@ -124,7 +124,8 @@ export default {
     alignItems: 'center',
     paddingLeft: '1%',
     fontSize: '14px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderTop: '1px solid black'
   },
   styleOfInput: {
     width:'30%',
@@ -133,7 +134,9 @@ export default {
     height: '20px',
     fontSize: '16px'
   },
-  span: {color: 'black'},
+  span: {
+    color: 'black'
+  },
   mainExpense: {
     width: '100%',
     height: '80px',
@@ -141,9 +144,9 @@ export default {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    color: 'white',
+    color: 'black',
     fontSize: '14px',
-    backgroundColor: '#ff484d',
+    backgroundColor: '#ffffff',
     boxSizing: 'border-box',
     padding: ' 0% 1%'
   },
@@ -156,7 +159,7 @@ export default {
     alignItems: 'center',
     color: 'white',
     fontSize: '14px',
-    backgroundColor: '#6cabff',
+    backgroundColor: 'rgb(255, 255, 255)',
     boxSizing: 'border-box',
     padding: ' 0% 1%'
 },
@@ -167,11 +170,22 @@ export default {
     width: '33%',
     textAlign:'center',
     alignItems:'center',
-    fontSize: '16px'
+    fontSize: '16px',
+    color: '#000000'
+  },
+  remaining: {
+    display: 'block',
+    fontSize: '20px',
+    color:'#30ff74'
   },
   expense: {
     display: 'block',
-    fontSize: '20px'
+    fontSize: '20px',
+    color:'#FF2416'
+  },
+  unit: {
+    color: '#000000',
+    fontSize:'14px'
   },
   time: {
     height: '20px',
