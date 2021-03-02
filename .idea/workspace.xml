@@ -44,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="213" column="14" selection-start-line="213" selection-start-column="14" selection-end-line="213" selection-end-column="14" />
+            <state relative-caret-position="295">
+              <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -378,12 +378,12 @@
       <workItem from="1610024033350" duration="3831000" />
       <workItem from="1610783339192" duration="899000" />
       <workItem from="1611756840118" duration="1213000" />
-      <workItem from="1613658764745" duration="42281000" />
+      <workItem from="1613658764745" duration="42546000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179531000" />
+    <option name="totallyTimeSpent" value="179796000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -396,6 +396,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19550858" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -782,8 +783,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/inputContent/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="213" column="14" selection-start-line="213" selection-start-column="14" selection-end-line="213" selection-end-column="14" />
+        <state relative-caret-position="295">
+          <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
         </state>
       </provider>
     </entry>
