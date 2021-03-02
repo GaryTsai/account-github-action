@@ -10,6 +10,7 @@ import "firebase/database";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
+import eventEmitter from "../../eventTracking/eventEmitter";
 
 const initialState = {
   theItems: [],
@@ -87,6 +88,7 @@ class Content extends Component {
     let setDate = firebase.database().ref(`expense/${account}/${timestamp}`);
     editContent[idx] = _isUndefined(editContent[idx]) ? '' : editContent[idx];
     setDate.update({itemClass: editCategory[idx], itemValue: editValue[idx], itemContent: editContent[idx]});
+    eventEmitter.dispatch('itemEdit', dateTime.toString());
     updateItemCallback && updateItemCallback(dateTime);
     this.isEdit(idx);
   };

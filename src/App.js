@@ -144,8 +144,6 @@ export default class App extends Component {
 
   updateItem = date => {
     const {account} = this.state;
-    eventEmitter.dispatch('itemEdit', date.toString());
-
     this.getUserData(account, date);
   };
 

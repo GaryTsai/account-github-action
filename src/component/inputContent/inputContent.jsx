@@ -6,7 +6,6 @@ import {
   buildStyles
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import category from '../../settings/category'
 import styles from "./styles";
 // import DatePicker from "react-datepicker";
 import DatePicker from 'react-mobile-datepicker';
@@ -21,7 +20,7 @@ import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
 import utils from "../../utils/dateFormat";
-
+import CategoryTable from "./categoryTable/categoryTable";
 const month = utils.toDualDigit(new Date().getMonth() + 1);
 const day = utils.toDualDigit(new Date().getDate());
 const initialState = {
@@ -31,7 +30,8 @@ const initialState = {
   date: new Date().getDate().toString(),
   startDate: new Date(),
   recordDate: new Date().getFullYear() + '-' + month + '-' + day,
-  isOpen: false
+  isOpen: false,
+  isOpenCategoryTable: false
 };
 
 class InputContent extends Component {
@@ -72,7 +72,7 @@ class InputContent extends Component {
     }).catch(function (err) {
       console.error("新增Post錯誤：", err);
     });
-    eventEmitter.dispatch('expense', 'insertItem');
+    eventEmitter.dispatch('itemInsert', this.state.inputCategory.toString());
     this.setState({inputContent: '', inputValue: ''});
     updateItemCallback && updateItemCallback(recordDate);
   };
@@ -135,17 +135,26 @@ class InputContent extends Component {
 
   handleCancel = () => this.setState({isOpen: false});
 
-
   handleSelect = (time) => this.setState({time, isOpen: false});
 
   handleClick = () => {
     this.setState({isOpen: true});
   };
+
+  openCategoryList = () => this.setState({ isOpenCategoryTable: true});
+
+  closeCategoryList = () => this.setState({ isOpenCategoryTable: false});
+
   isSmallDevices = () => window.screen.width < 410;
+
+  changeCategory = (category) =>{
+    console.log(category);
+    this.setState({inputCategory: category, isOpenCategoryTable:false})
+  };
 
   render() {
     const {items, monthOfBudget, datePickerDate} = this.props;
-    const {startDate} = this.state;
+    const {startDate, isOpenCategoryTable} = this.state;
     var newStartDate = new Date(startDate);
     const month = ((newStartDate.getMonth() + 1));
     const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth() + 1)) - day;
@@ -225,12 +234,14 @@ class InputContent extends Component {
         <div style={styles.inputContainer}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%'}}>
             <label style={styles.inputTitle}>類別: </label>
-            <select className='category' style={styles.selectFrame} id="category"
-                    onChange={(c) => this.inputCategory(c.target.value)}>
-              {category['CATEGORY'].map((c, i) => (
-                <option key={'category' + i} value={c}>{c}</option>
-              ))}
-            </select>
+            <div style={styles.styleOfSelectCategory}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
+            {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} selectCallback={this.changeCategory}/>}
+            {/*<select className='category' style={styles.selectFrame} id="category"*/}
+            {/*        onChange={(c) => this.inputCategory(c.target.value)}>*/}
+            {/*  {category['CATEGORY'].map((c, i) => (*/}
+            {/*    <option key={'category' + i} value={c}>{c}</option>*/}
+            {/*  ))}*/}
+            {/*</select>*/}
             <label style={styles.inputTitle}>備註: </label>
             <input type="text" style={styles.inputFrame} value={this.state.inputContent}
                    onChange={(c) => this.inputContent(c.target.value)}/>

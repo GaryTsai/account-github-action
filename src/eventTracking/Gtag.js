@@ -59,7 +59,7 @@ export default class GTAG {
     Gtag('js', new Date());
   }
 
-  pageview = page_path => this.event('pageview', page_path);
+  pageview =page_path=> Gtag('config',this.trackerId,{page_path});
 
   event = (event_category, event_action, event_label, value) => {
     var dimensionValue = event_category.toString();

@@ -9,8 +9,7 @@ export default {
     fontSize: '14px',
     borderTop: 'solid 1px black',
     backgroundColor: 'white',
-    boxSizing: 'border-box',
-    padding: ' 0% 0%  0% 1%'
+    boxSizing: 'border-box'
   },
   inputLabel: {
     color: 'black',
@@ -46,7 +45,7 @@ export default {
     cursor: 'pointer',
     fontSize: '14px',
     borderRadius: '10px',
-    margin: '10px',
+    margin: '1px',
     boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.3s ease 0s',
     outline: 'none',
@@ -176,7 +175,7 @@ export default {
   remaining: {
     display: 'block',
     fontSize: '20px',
-    color:'#30ff74'
+    color:'rgb(33 208 83)'
   },
   expense: {
     display: 'block',
@@ -209,5 +208,20 @@ export default {
       boxShadow: 'inset 0px 1px 0px rgba(0, 0, 0, 0.1)'
     }
   },
-
+  styleOfSelectCategory:{
+    display: 'flex',
+    justifyContent: 'center',
+    width: '20%',
+    height: '26px',
+    alignItems: 'center',
+    background: '#ffffff',
+    cursor: 'pointer',
+    fontSize: '14px',
+    borderRadius: '10px',
+    margin: '10px',
+    boxShadow: 'rgb(0 0 0 / 20%) 0px 8px 15px',
+    transition: 'all 0.3s ease 0s',
+    outline: 'none',
+    border: '2px solid rgb(0, 150, 136)'
+  }
 }
