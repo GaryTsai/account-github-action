@@ -19,7 +19,7 @@ class categoryTable extends Component {
       <div style={{
         position: 'absolute',
         display: 'inline-flex',
-        height:  window.screen.width > 414 ? 'calc(100% - 286px)' : '100%',
+        height:  window.screen.width > 414 ? 'calc(100% - 288px)' : '100%',
         width: '100%',
         zIndex: 7,
         bottom: 0,

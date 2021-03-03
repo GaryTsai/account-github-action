@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/inputContent/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -58,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+            <state relative-caret-position="161">
+              <caret line="21" column="61" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -71,7 +66,7 @@
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="184">
-              <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -119,7 +114,7 @@
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="274">
-              <caret line="46" column="2" lean-forward="true" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
+              <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -128,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -381,12 +376,12 @@
       <workItem from="1610024033350" duration="3831000" />
       <workItem from="1610783339192" duration="899000" />
       <workItem from="1611756840118" duration="1213000" />
-      <workItem from="1613658764745" duration="45394000" />
+      <workItem from="1613658764745" duration="45875000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182644000" />
+    <option name="totallyTimeSpent" value="183125000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -762,28 +757,28 @@
     <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
-          <caret line="46" column="2" lean-forward="true" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
+          <caret line="46" column="2" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+        <state relative-caret-position="161">
+          <caret line="21" column="61" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
