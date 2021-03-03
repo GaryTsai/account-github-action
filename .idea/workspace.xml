@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/inputContent/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/inputContent/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/inputContent.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="236" column="52" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="52" />
+              <caret line="236" column="104" selection-start-line="236" selection-start-column="104" selection-end-line="236" selection-end-column="104" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#733#756#0" expanded="true" />
@@ -41,20 +46,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
+            <state relative-caret-position="180">
+              <caret line="212" column="29" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+            <state relative-caret-position="115">
+              <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -65,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+            <state relative-caret-position="184">
+              <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -113,20 +118,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+            <state relative-caret-position="274">
+              <caret line="46" column="2" lean-forward="true" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/annualExpense/totalExpense.jsx">
+        <entry file="file://$PROJECT_DIR$/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="66" column="24" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -142,7 +144,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;Login</find>
       <find>change</find>
       <find>tracker.event('</find>
       <find>getUserData</find>
@@ -171,6 +172,7 @@
       <find>loading.gif</find>
       <find>isOpenCategoryTable</find>
       <find>itemEdit</find>
+      <find>styleOfSelectCategory</find>
       <find>selectCallback</find>
     </findStrings>
   </component>
@@ -212,13 +214,14 @@
         <option value="$PROJECT_DIR$/src/component/login.jsx" />
         <option value="$PROJECT_DIR$/src/eventTracking/Gtag.js" />
         <option value="$PROJECT_DIR$/src/eventTracking/eventTracking.js" />
-        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" />
-        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" />
-        <option value="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/component/contents/content.jsx" />
-        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" />
         <option value="$PROJECT_DIR$/src/component/inputContent/styles.js" />
+        <option value="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" />
+        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js" />
+        <option value="$PROJECT_DIR$/src/index.css" />
+        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js" />
+        <option value="$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js" />
       </list>
     </option>
   </component>
@@ -378,12 +381,12 @@
       <workItem from="1610024033350" duration="3831000" />
       <workItem from="1610783339192" duration="899000" />
       <workItem from="1611756840118" duration="1213000" />
-      <workItem from="1613658764745" duration="42546000" />
+      <workItem from="1613658764745" duration="45394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179796000" />
+    <option name="totallyTimeSpent" value="182644000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -396,7 +399,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19550858" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -578,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -713,13 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/component/header/header.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -727,13 +715,6 @@
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -760,20 +741,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js">
+    <entry file="file://$PROJECT_DIR$/src/component/inputContent/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="180">
+          <caret line="212" column="29" selection-start-line="212" selection-start-column="29" selection-end-line="212" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/inputContent/inputContent.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="236" column="52" selection-start-line="236" selection-start-column="31" selection-end-line="236" selection-end-column="52" />
+          <caret line="236" column="104" selection-start-line="236" selection-start-column="104" selection-end-line="236" selection-end-column="104" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#733#756#0" expanded="true" />
@@ -781,10 +759,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/inputContent/styles.js">
+    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="220" column="14" selection-start-line="220" selection-start-column="14" selection-end-line="220" selection-end-column="14" />
+        <state relative-caret-position="184">
+          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/classWithImageResources.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="46" column="2" lean-forward="true" selection-start-line="46" selection-start-column="2" selection-end-line="46" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/inputContent/categoryTable/categoryTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="25" column="44" lean-forward="true" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -43,5 +43,6 @@ const category = [
   { className: '服飾' ,
     resource: 'apparel.png'
   },
+
 ];
 export default category;

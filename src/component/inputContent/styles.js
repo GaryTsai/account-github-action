@@ -211,7 +211,6 @@ export default {
   styleOfSelectCategory:{
     display: 'flex',
     justifyContent: 'center',
-    width: '30%',
     height: '26px',
     alignItems: 'center',
     background: '#ffffff',

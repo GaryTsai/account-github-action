@@ -19,16 +19,21 @@ class categoryTable extends Component {
       <div style={{
         position: 'absolute',
         display: 'inline-flex',
-        height:  window.screen.width > 414 ? 'calc(100% - 288px)' : '100%',
+        height:  window.screen.width > 414 ? 'calc(100% - 286px)' : '100%',
         width: '100%',
         zIndex: 7,
         bottom: 0,
         backgroundColor: 'rgb(234 233 233)',
         maxWidth: '716px',
-        padding: '2% 2% 5% 2%',
-        boxSizing: 'border-box'
+        padding: '1% 2% 5% 2%',
+        boxSizing: 'border-box',
+        webkitScrollbar: {
+        display: 'none'
+      }
       }}>
-        <div style={{overflow: 'overlay', height: 'calc(100% - 16px)'}}>
+        <div style={{overflow: 'overlay',    webkitScrollbar:{
+            display: 'none'
+          }, height: 'calc(100% - 16px)'}}>
         {Object.keys(category).map((c) =>
             <div key={'categoryFrame' + c}
               style={{
@@ -45,8 +50,8 @@ class categoryTable extends Component {
               <div key={'category' + c}
                  style={{
                    backgroundSize: '100%',
-                   width: '50px',
-                   height: '50px',
+                   width: '35px',
+                   height: '35px',
                    backgroundRepeat: 'no-repeat',
                    zIndex: '5',
                    margin: '10px',
