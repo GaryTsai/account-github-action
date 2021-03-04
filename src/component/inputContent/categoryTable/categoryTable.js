@@ -19,13 +19,13 @@ class categoryTable extends Component {
       <div style={{
         position: 'absolute',
         display: 'inline-flex',
-        height:  window.screen.width > 414 ? 'calc(100% - 288px)' : '100%',
-        width: '100%',
+        height:  'calc(100% - 288px)',
+        width: 'calc(100% - 4px)',
         zIndex: 7,
-        bottom: 0,
+        bottom: '2px',
         backgroundColor: 'rgb(234 233 233)',
         maxWidth: '716px',
-        padding: '1% 2% 5% 2%',
+        padding: '1% 2% 3% 2%',
         boxSizing: 'border-box',
         webkitScrollbar: {
         display: 'none'
@@ -33,12 +33,13 @@ class categoryTable extends Component {
       }}>
         <div style={{overflow: 'overlay',    webkitScrollbar:{
             display: 'none'
-          }, height: 'calc(100% - 16px)'}}>
+          }, height: 'calc(100% - 40px)'}}>
         {Object.keys(category).map((c) =>
             <div key={'categoryFrame' + c}
               style={{
               backgroundColor: 'white',
               margin: '10px',
+              padding: '5px',
               display: 'inline-block',
               textAlign: 'center',
               borderRadius: '20px',
