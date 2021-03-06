@@ -24,10 +24,14 @@ export default {
     fontSize: '18px',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'rgb(240, 193, 193)',
+    backgroundColor: '#ffffff',
     boxSizing: 'border-box',
     padding: '0% 1%',
     borderBottom: '1px solid black',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    ':hover':{
+      backgroundColor: 'rgb(255 153 153)',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.6)'
+    }
   },
 }

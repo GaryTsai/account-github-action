@@ -6,10 +6,9 @@ export default {
   header: {
     width: '100%',
     height: '44px',
-    backgroundColor: '#1E90FF',
+    backgroundColor: 'rgb(0 185 156)',
     top: '0px',
     left: '0px',
-    background: 'linear-gradient(to bottom right,white,#0081ff)',
     borderRadius: '5px 5px 0 0'
   },
   costImg: {
@@ -69,6 +68,6 @@ export default {
     alignItems: 'center',
     paddingRight: '1%',
     fontSize: '18px',
-    color: 'black'
+    color: '#ffffff'
   }
 }

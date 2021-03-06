@@ -27,7 +27,7 @@ export default class Powered extends Component {
       }}>
         <div style={{
           width: 'calc(100% - 4px)',
-          maxWidth: '716px',
+          maxWidth: '717px',
           backgroundColor: 'white',
           background: '#ff7600',
           color: 'white',

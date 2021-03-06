@@ -8,8 +8,7 @@ import "firebase/database";
 // Add the Firebase products that you want to use
 import "firebase/auth";
 import "firebase/firestore";
-import Gtag from './../eventTracking/Gtag';
-const tracker = new Gtag();
+
 const initialState = {
   account:'',
   password:'',

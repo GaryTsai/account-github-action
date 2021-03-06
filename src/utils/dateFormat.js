@@ -13,6 +13,8 @@ const utils = {
     return day;
   },
 
+  format : (y, idx) => y + '-' + ('0' + (idx + 1)).slice(-2),
+
   days : (y,m) => {
     if (((((y % 4 === 0) && (y % 100 !== 0)) || ((y % 400 === 0)) )&& (m === 2))) {
       return 29

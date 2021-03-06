@@ -1,7 +1,6 @@
 export default {
   items: {
     width: '100%',
-    display: 'inline-block',
     alignItems: 'center',
     color: 'black',
 

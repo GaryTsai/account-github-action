@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import styles from "./styles";
 import utils from "../../utils/dateFormat";
-
+import Radium from "radium";
 const initialState = {
   initYear: 2020,
   AnnualCost: 0,
   AnnualMonthCost: '',
 };
 
-export default class InputContent extends Component {
+class InputContent extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -56,8 +56,6 @@ export default class InputContent extends Component {
     this.setAnnualCost(result);
   };
 
-  format = (y, idx) => y + '-' + ('0' + (idx + 1)).slice(-2);
-
   componentDidMount() {
     this.annualMonthCost();
   }
@@ -65,6 +63,7 @@ export default class InputContent extends Component {
   render() {
     const {AnnualCost, AnnualMonthCost} = this.state;
     const {detailOfMonth} = this.props;
+
     return (
       <div style={{display: 'inline-block', textAlign: 'left', width: '100%'}}>
         {Object.keys(AnnualMonthCost).map((c, idx) => (
@@ -74,7 +73,7 @@ export default class InputContent extends Component {
             {Object.keys(AnnualMonthCost[c]).map((d, idx) => (
               AnnualMonthCost[c][idx] !== 0 &&
               <li style={{listStyleType: 'none', ...styles.styleOfMonth}} key={'monthOfCost' + idx}
-                  onClick={() => detailOfMonth(this.format(c, idx))}>{idx + 1 + '月 : ' + AnnualMonthCost[c][idx]}$NT</li>
+                  onClick={() => detailOfMonth([c, idx])}>{idx + 1 + '月 : ' + AnnualMonthCost[c][idx]}$NT</li>
             ))}
           </div>
         ))}
@@ -82,3 +81,4 @@ export default class InputContent extends Component {
     )
   }
 }
+export default Radium(InputContent)

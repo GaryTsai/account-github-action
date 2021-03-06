@@ -1,6 +1,6 @@
 import eventEmitter from './eventEmitter';
 import Gtag from './Gtag';
-import React, {Component} from 'react';
+import {Component} from 'react';
 
 export default class eventTracking extends Component{
   constructor(){

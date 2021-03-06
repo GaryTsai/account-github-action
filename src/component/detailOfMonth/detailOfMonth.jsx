@@ -14,7 +14,7 @@ export default class DetailOfMonth extends Component {
 
   componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.items !== this.props.items) {
-      this.showDetailOfMonth(nextProps.items, this.props.annualMonth,);
+      this.showDetailOfMonth(nextProps.items, this.props.annualMonth);
     }
   }
 
@@ -23,8 +23,10 @@ export default class DetailOfMonth extends Component {
     deleteCallback && deleteCallback(timestamp);
   };
 
-  showDetailOfMonth = (items, dateAndMonth) => {
-    const days = utils.days(dateAndMonth.slice(0, 4), dateAndMonth.slice(6, 8));
+  showDetailOfMonth = (items, dateArray) => {
+    console.log(dateArray);
+    const days = utils.days(dateArray[0], dateArray[1]+1);
+    const dateAndMonth = utils.format(dateArray[0], dateArray[1]);
     let array = {};
     for (let d = 1; d <= days; d++) {
       let dateOfTheMonth = dateAndMonth + '-' + utils.toDualDigit(d);
@@ -58,7 +60,7 @@ export default class DetailOfMonth extends Component {
 
     return (
       <div style={{display: 'inline-block', textAlign: 'left', width: '100%'}}>
-        <li style={{listStyleType: 'none', ...styles.styleOfYearMonth}}>{annualMonth}</li>
+        <li style={{listStyleType: 'none', ...styles.styleOfYearMonth}}>{utils.format(annualMonth[0], annualMonth[1])}</li>
         {Object.keys(monthItems).reverse().map((c, idx) => (
           <div key={'monthCost' + idx}>
             <li style={{listStyleType: 'none', ...styles.styleOfDate}}>{c+ ' :'}<div style={styles.dailyCost} >{'    ' + this.dailyCost(monthItems[c])}</div></li>

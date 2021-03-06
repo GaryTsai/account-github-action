@@ -1,5 +1,3 @@
-import React from 'react';
-
 const category = [
   { className: '早餐' ,
     resource: 'breakfast.png'

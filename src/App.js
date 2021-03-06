@@ -180,10 +180,11 @@ export default class App extends Component {
     this.updateItem(date);
   };
 
-  showDetailOfMonth = (dateAndMonth) =>{
+  showDetailOfMonth = (dateArray) =>{
     const {allItems} = this.state;
     // const dateYearAndMonth = y +'-'+ utils.toDualDigit(m);
-    const days =utils.days(dateAndMonth.slice(0,4),dateAndMonth.slice(6,8));
+    const days = utils.days(dateArray[0], dateArray[1]+1);
+    const dateAndMonth = utils.format(dateArray[0], dateArray[1]);
     let array = {};
     for (let d = 1; d <= days; d++) {
       let dateOfTheMonth = dateAndMonth + '-' + utils.toDualDigit(d);
@@ -195,7 +196,7 @@ export default class App extends Component {
       }
     }
     eventEmitter.dispatch('detailOfMonth', dateAndMonth.toString());
-    this.setState({route: 'detailOfMonth', monthItems:array, annualMonth: dateAndMonth});
+    this.setState({route: 'detailOfMonth', monthItems:array, annualMonth: dateArray});
   };
 
   login = (account) => this.setState({account: account, route:'record'});
@@ -282,18 +283,18 @@ export default class App extends Component {
 
     return (
       <div className="App" style={{
-        height: window.innerHeight - '4px',
+        height: window.innerHeight - 4 + 'px',
         margin: '0 auto',
         fontFamily: 'cursive'
       }}>
-        {route !=='login' && loading === true &&<div style={{    position: 'absolute',
+        {route !=='login' && loading === true &&<div style={{position: 'absolute',
           top: 0,
           left: 0,
           height: '100%',
           width: '100%',
           display: 'block',
           zIndex: 7,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)'}}><img  style={{display:'flex',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)'}}><img  alt="" style={{display:'flex',
           width: '120px',
           height: '120px',
           position: 'relative',
@@ -302,7 +303,7 @@ export default class App extends Component {
           top: 'calc(50% - 50px)'
         }} src={require('./assets/img/loading.gif')}/></div>}
         <div>{route ==='login' && <LogIn eventEmitter={eventEmitter} loginCallback={this.login}/>}</div>
-        <header  style={{height: window.innerHeight}} className="App-header">
+        <header  style={{height: window.innerHeight + 'px'}} className="App-header">
           <div style={{
             width: '100%',
             margin: '0 auto',

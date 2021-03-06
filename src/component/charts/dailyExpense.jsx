@@ -210,14 +210,14 @@ class DailyExpense extends Component {
     return window.innerHeight - 44 - 26.5 - 40
   };
   render() {
-    const {year, time} = this.state;
+    const {time} = this.state;
     return (
       <div style={{ background:'#ffffff'}}>
         <div className="App">
-          <a style={{ cursor:'pointer'}}
+          <div style={{ cursor:'pointer'}}
              onClick={this.handleClick}>
             <div style={{ backgroundColor:'#b8dbff', textAlign:'center', color:'black', fontSize: '20px',...styles.selectTime}}>{utils.dateFormat(time).slice(0,7)}</div>
-          </a>
+          </div>
 
           <DatePicker
             value={this.state.time}

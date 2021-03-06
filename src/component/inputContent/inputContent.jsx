@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import Radium from "radium";
 import {
   CircularProgressbar,
@@ -8,8 +7,6 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import styles from "./styles";
 // import DatePicker from "react-datepicker";
-import DatePicker from 'react-mobile-datepicker';
-
 import "react-datepicker/dist/react-datepicker.css";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
@@ -153,7 +150,7 @@ class InputContent extends Component {
   };
 
   render() {
-    const {items, monthOfBudget, datePickerDate} = this.props;
+    const {items, monthOfBudget} = this.props;
     const {startDate, isOpenCategoryTable} = this.state;
     var newStartDate = new Date(startDate);
     const month = ((newStartDate.getMonth() + 1));
