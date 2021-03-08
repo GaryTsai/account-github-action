@@ -53,7 +53,8 @@ const initialState = {
   year:'',
   month:'',
   loading: true.valueOf(),
-  datePickerDate: new Date()
+  datePickerDate: new Date(),
+  heightOfContent: window.innerHeight
 };
 
 export default class App extends Component {
@@ -77,11 +78,15 @@ export default class App extends Component {
 
   componentDidMount() {
     const {account} = this.state;
+    const self = this;
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
     this.loginRecord();
     const date = utils.dateFormat(new Date());
     this.getUserData(account, date);
+    window.addEventListener('resize', ()=>{
+      self.setState({heightOfContent: window.innerHeight})
+    });
   };
 
   loginRecord = () =>{
