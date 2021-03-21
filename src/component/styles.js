@@ -63,4 +63,17 @@ export default {
     padding: '0% 1%',
     borderBottom: '1px solid black'
   },
+  loginFrame:{
+    width: '25%',
+    height: "210px",
+    background: 'white',
+    margin: '35vh auto',
+    zIndex: 5,
+    opacity: '1',
+    minWidth: '349px',
+    borderRadius: ' 20px',
+    boxShadow: '0 0 1em #484848',
+    fontFamily: 'sans-serif',
+    border: '4px solid #298ddc'
+  }
 }

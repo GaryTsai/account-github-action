@@ -83,10 +83,11 @@ export default class App extends Component {
     firebase.analytics();
     this.loginRecord();
     const date = utils.dateFormat(new Date());
-    this.getUserData(account, date);
     window.addEventListener('resize', ()=>{
       self.setState({heightOfContent: window.innerHeight})
     });
+    if(!account) return;
+    this.getUserData(account, date);
   };
 
   loginRecord = () =>{
@@ -114,6 +115,9 @@ export default class App extends Component {
     if(account ==='') return ;
     let getBudgetRef = firebase.database().ref(`/account/${account}`);
     getBudgetRef.once('value').then((snapshot) => {
+      if(!snapshot.val()){
+        return;
+      }
       let accountBudget = snapshot.val().budget;
       self.setState({monthOfBudget:accountBudget})
     });
@@ -121,10 +125,12 @@ export default class App extends Component {
   };
 
   getUserData = (account, date )=>{
+    console.log(account);
     let getDataRef = firebase.database().ref(`/expense/${account}` );
     let self =this;
     getDataRef.once('value').then( (snapshot) => {
       let items = [];
+      if(account ==='') return ;
       if(!!account && snapshot.val() == null)
         return self.setState({allItems:items, todayItems: [], date:date, loading: false});
       if(!account &&_isUndefined(snapshot.val()[account])) return;
@@ -154,6 +160,7 @@ export default class App extends Component {
 
   deleteItem = (timestamp) => {
     const {date, account} = this.state;
+    console.log(account);
     let delRef = firebase.database().ref(`/expense/${account}` );
     delRef.child(`${timestamp}`).remove().then(function () {
       eventEmitter.dispatch('itemDelete', date.toString());

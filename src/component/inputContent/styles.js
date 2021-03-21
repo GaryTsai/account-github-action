@@ -54,8 +54,8 @@ export default {
     }
   },
   register:{
-    padding: '8px 50px',
-    borderRadius: '0 10px 10px 0',
+    padding: '4px 35px',
+    borderRadius: '0 0px 0px 0',
     background: 'white',
     border: 'none',
     color:'white',
@@ -63,7 +63,7 @@ export default {
     outline: 'none'
   },
   login:{
-    padding: '8px 50px',
+    padding: '4px 35px',
     borderRadius: '10px 0 0 10px',
     background: 'white',
     borderStyle: 'black',
@@ -72,32 +72,54 @@ export default {
     cursor: 'pointer',
     outline: 'none'
 },
+  forgetPWD:{
+    padding: '4px 35px',
+    borderRadius: '0px 10px 10px 0px',
+    background: 'white',
+    borderStyle: 'black',
+    border: 'none',
+    color:'white',
+    cursor: 'pointer',
+    outline: 'none'
+  },
   error: {
+    backgroundColor: 'white',
     color: 'red',
     fontSize: '16px',
-    paddingTop:'10px'
+    position: 'relative',
+    padding: '3% 0%',
+    top: '0%',
+    width: '100%',
+    display: 'flex',
+    marginTop: '20%',
+    borderRadius: '10px',
+    boxSizing: 'border-box',
+    border: '3px solid red',
+    fontFamily: 'sans-serif'
   },
   inputAccount: {
     color: 'black',
     textAlign: 'center',
-    margin:'5%',
+    margin:'3% 11%',
     fontSize: '15px',
-    transform: 'scale(1.22)'
+    transform: 'scale(1.05)',
+    float: 'right'
   },
   inputPassword: {
     color: 'black',
     textAlign: 'center',
-    margin:'5%',
+    margin:'3% 11%',
     fontSize: '15px',
-    transform: 'scale(1.22)'
+    transform: 'scale(1.05)',
+    float: 'right'
   },
   loginModal:{
     textAlign: 'center',
     position: 'relative',
-    paddingTop: '10%'
+    paddingTop: '4%'
   },
   loginSubmit:{
-    padding: '8px 50px',
+    padding: '6px 50px',
     borderRadius: '10px',
     background: '#00a257',
     borderStyle: 'black',
@@ -222,5 +244,9 @@ export default {
     transition: 'all 0.3s ease 0s',
     outline: 'none',
     border: '2px solid rgb(0, 150, 136)'
+  },
+  icon:{
+    height:'16px',
+    width:'16px'
   }
 }

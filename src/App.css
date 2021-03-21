@@ -15,5 +15,29 @@
 .App {
   min-width: 360px;
 }
+.OpenIdLoginModule{
+  height: 30px;
+  border-radius: 7px;
+  border: solid 1px #d0d0d0;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  background-color: #ffffff;
+  text-align: center;
+  width: 60%;
+  justify-content: center;
+  display: flex;
+  margin: 5px auto;
+  font-family: sans-serif;
+  font-size: 12px;
+}
+.oauth-google-inner{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
 
