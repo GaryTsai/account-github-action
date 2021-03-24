@@ -167,38 +167,41 @@ export default class Login extends Component {
         zIndex: 7,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }}>
-        <div style={styles.loginFrame}  style={{width:'25%',height:"210px",background:'white',margin:'35vh auto', zIndex:5,
-          opacity:'1', minWidth:'349px',borderRadius:' 20px',boxShadow: '0 0 1em #484848', fontFamily: 'sans-serif',
-          border: '4px solid #298ddc'
+        <div style={styles.loginFrame}  style={{height:"100%", width: '100%', background:'white', zIndex:5,
+          opacity:'1', minWidth:'349px', boxShadow: '0 0 1em #484848', fontFamily: 'sans-serif',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'fixed'
         }}>
           <div style={styles.loginModal}>
-            <button type="submit" id="item-submit"  style={{...styles.login, boxShadow: loginStatus === 'login' ? '0 0 15px 0px #0094ff' : 'none' , color: loginStatus === 'login' ? 'white' : 'black' , backgroundColor: loginStatus === 'login' ? '#0094ff' : '#d5d5d5' }} onClick={() => this.loginSelect('login')}>登入
-            </button>
-            <button type="submit" id="item-submit" style={{...styles.register, boxShadow: loginStatus === 'register' ? '0 0 15px 0px #0094ff' : 'none' ,color: loginStatus === 'register' ? 'white' : 'black' , backgroundColor: loginStatus === 'register' ? '#0094ff' : '#d5d5d5' }} onClick={() => this.loginSelect('register')}>註冊
-            </button>
-            <button type="submit" id="item-submit" style={{...styles.forgetPWD, boxShadow: loginStatus === 'forgetPWD' ? '0 0 15px 0px #ff730e' : 'none' ,color: loginStatus === 'forgetPWD' ? 'white' : 'black' , backgroundColor: loginStatus === 'forgetPWD' ? '#ff730e' : '#d5d5d5' }} onClick={() => this.loginSelect('forgetPWD')}>忘記密碼
-            </button>
+            <div style={{...styles.logo, backgroundImage: 'url(' + require('./../assets/img/logo.png') + ')'}}></div>
+            <div style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}>
+              <div  id="item-submit"  style={{...styles.login, color: loginStatus === 'login' ? 'white' : 'black' , backgroundColor: loginStatus === 'login' ? '#009688' : 'white' }} onClick={() => this.loginSelect('login')}>登入
+              </div>
+              <div  id="item-submit" style={{...styles.register,color: loginStatus === 'register' ? 'white' : 'black' , backgroundColor: loginStatus === 'register' ? '#009688' : 'white' }} onClick={() => this.loginSelect('register')}>註冊
+              </div>
+              <div t id="item-submit" style={{...styles.forgetPWD,color: loginStatus === 'forgetPWD' ? 'white' : 'black' , backgroundColor: loginStatus === 'forgetPWD' ? '#ff730e' : 'white' }} onClick={() => this.loginSelect('forgetPWD')}>忘記密碼
+              </div>
+            </div>
             { loginStatus !== 'forgetPWD' && <div>
               <div style={styles.inputAccount}>
-              <label >帳號(email): </label>
-              <input name={'email'} type="text" value={this.state.account}
+              <input style={styles.inputFrame} name={'email'} type="text" value={this.state.account} placeholder='請輸入帳號(email)'
                      onChange={(c) => this.inputAccount(c.target.value)}/>
               </div>
               <div style={styles.inputPassword}>
-              <label>密碼: </label>
-              <input type="text" value={this.state.password}
+              <input style={styles.inputFrame} type="text" value={this.state.password} placeholder='請輸入密碼'
                      onChange={(c) => this.inputPassword(c.target.value)}/>
               </div>
+              <button type="submit" id="item-login-submit" style={{...styles.loginSubmit}} onClick={() => this.getStatusMethod(loginStatus)}>確定
+              </button>
             </div>}
             { loginStatus === 'forgetPWD' && <div>
-              <div style={styles.inputAccount}>
+              <div style={{...styles.inputAccount,lineHeight: '34px'}}>
                 <label>請填入你的帳號(email): </label>
-                <input type="text" value={this.state.email}
+                <input style={{...styles.inputFrame, marginBottom: '30px'}}type="text" value={this.state.email}
                        onChange={(c) => this.inputEmail(c.target.value)}/>
+                <button type="submit" id="item-login-submit" style={{...styles.loginSubmit, border:'2px solid #ff730e'}} onClick={() => this.getStatusMethod(loginStatus)}>確定
+                </button>
               </div>
             </div>}
-            <button type="submit" id="item-login-submit" style={{...styles.loginSubmit}} onClick={() => this.getStatusMethod(loginStatus)}>確定
-            </button>
             {loginStatus === 'forgetPWD' && <span style={{display: 'block', fontWeight: 'bold',padding: '20px'}}>請至填入的mail信箱重設您的密碼</span>}
             {loginStatus === 'login' && <div className="OpenIdLoginModule">
                   <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>

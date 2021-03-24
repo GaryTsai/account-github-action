@@ -1,3 +1,5 @@
+import React from "react";
+
 export default {
   inputContainer: {
     height: '40px',
@@ -29,13 +31,14 @@ export default {
     }
   },
   inputFrame: {
-    height: '20px',
-    width: '20%',
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '16px',
-    border: '1px solid rgb(135, 206, 250)',
-    borderRadius: '5px'
+    height: '30px',
+    padding: '6px 10px',
+    backgroundColor: '#fff',
+    border: '1px solid #D1D1D1',
+    borderRadius: '4px',
+    boxShadow: 'none',
+    boxSizing: 'border-box',
+    width: '100%'
   },
   submit: {
     height: '30px',
@@ -54,33 +57,31 @@ export default {
     }
   },
   register:{
-    padding: '4px 35px',
-    borderRadius: '0 0px 0px 0',
+    padding: '4px 50px',
     background: 'white',
-    border: 'none',
     color:'white',
     cursor: 'pointer',
-    outline: 'none'
+    outline: 'none',
+    borderBottom: '2px solid #009688',
   },
   login:{
-    padding: '4px 35px',
-    borderRadius: '10px 0 0 10px',
+    padding: '4px 50px',
     background: 'white',
     borderStyle: 'black',
-    border: 'none',
+    borderBottom: '2px solid #009688',
     color:'white',
     cursor: 'pointer',
-    outline: 'none'
+    outline: 'none',
 },
   forgetPWD:{
-    padding: '4px 35px',
-    borderRadius: '0px 10px 10px 0px',
+    padding: '4px 50px',
     background: 'white',
     borderStyle: 'black',
     border: 'none',
     color:'white',
     cursor: 'pointer',
-    outline: 'none'
+    outline: 'none',
+    borderBottom: '2px solid #ff730e',
   },
   error: {
     backgroundColor: 'white',
@@ -100,33 +101,32 @@ export default {
   inputAccount: {
     color: 'black',
     textAlign: 'center',
-    margin:'3% 11%',
+    margin:'5% 11%',
     fontSize: '15px',
     transform: 'scale(1.05)',
-    float: 'right'
   },
   inputPassword: {
     color: 'black',
     textAlign: 'center',
-    margin:'3% 11%',
+    margin:'5% 11%',
     fontSize: '15px',
     transform: 'scale(1.05)',
-    float: 'right'
   },
   loginModal:{
     textAlign: 'center',
     position: 'relative',
-    paddingTop: '4%'
+    top: '10%',
+    height: '100%'
   },
   loginSubmit:{
     padding: '6px 50px',
     borderRadius: '10px',
-    background: '#00a257',
+    background: '#ffffff',
     borderStyle: 'black',
-    border: 'none',
-    color:'white',
+    color:'#000000',
     cursor: 'pointer',
-    outline: 'none'
+    outline: 'none',
+    border: '2px solid rgb(0, 162, 87)'
   },
   inputTitle: {
     color: '#4376ff',
@@ -248,5 +248,12 @@ export default {
   icon:{
     height:'16px',
     width:'16px'
+  },
+  logo:{
+    backgroundSize: '100%',
+    backgroundRepeat: 'no-repeat',
+    height: '26%',
+    width: '80%',
+    margin: '0px auto'
   }
 }

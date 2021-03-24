@@ -231,14 +231,8 @@ class InputContent extends Component {
         <div style={styles.inputContainer}>
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%'}}>
             <label style={styles.inputTitle}>類別: </label>
-            <div style={{...styles.styleOfSelectCategory, width: window.screen.width > 414 ? '20%' :  '30%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
+            <div style={{...styles.styleOfSelectCategory, width: window.screen.width > 414 ? '40%' :  '50%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
             {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} selectCallback={this.changeCategory}/>}
-            {/*<select className='category' style={styles.selectFrame} id="category"*/}
-            {/*        onChange={(c) => this.inputCategory(c.target.value)}>*/}
-            {/*  {category['CATEGORY'].map((c, i) => (*/}
-            {/*    <option key={'category' + i} value={c}>{c}</option>*/}
-            {/*  ))}*/}
-            {/*</select>*/}
             <label style={styles.inputTitle}>備註: </label>
             <input type="text" style={styles.inputFrame} value={this.state.inputContent}
                    onChange={(c) => this.inputContent(c.target.value)}/>
