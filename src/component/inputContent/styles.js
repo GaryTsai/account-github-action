@@ -96,13 +96,13 @@ export default {
     borderRadius: '10px',
     boxSizing: 'border-box',
     border: '3px solid red',
-    fontFamily: 'sans-serif'
+    fontFamily: 'sans-serif',
+    justifyContent: 'center'
   },
   inputAccount: {
     color: 'black',
     textAlign: 'center',
     margin:'5% 11%',
-    fontSize: '15px',
     transform: 'scale(1.05)',
   },
   inputPassword: {
