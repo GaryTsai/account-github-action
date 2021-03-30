@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/login.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/login.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+            <state relative-caret-position="99">
+              <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#290#318#0" expanded="true" />
@@ -374,7 +371,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="241230000" />
+    <option name="totallyTimeSpent" value="241958000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -403,7 +400,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5125495" side_tool="true" weight="0.2407932" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48745045" visible="true" weight="0.10339943" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48745045" visible="true" weight="0.4490085" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -798,8 +795,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/login.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="148" column="31" selection-start-line="148" selection-start-column="31" selection-end-line="148" selection-end-column="31" />
+        <state relative-caret-position="99">
+          <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#290#318#0" expanded="true" />

@@ -145,9 +145,7 @@ export default class Login extends Component {
   signInWithFaceBookAccount = () =>{
     const {loginCallback, eventEmitter} = this.props;
     const provider = new firebase.auth.FacebookAuthProvider();
-    console.log(provider);
     firebase.auth().signInWithPopup(provider).then( result => {
-      console.log('result:', result);
       if(result) {
         firebase.database().ref(`/account/${result.user.uid}`).set({
           signup: new Date().getTime(),
