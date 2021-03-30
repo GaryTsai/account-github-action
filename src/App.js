@@ -125,7 +125,6 @@ export default class App extends Component {
   };
 
   getUserData = (account, date )=>{
-    console.log(account);
     let getDataRef = firebase.database().ref(`/expense/${account}` );
     let self =this;
     getDataRef.once('value').then( (snapshot) => {

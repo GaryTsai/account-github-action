@@ -154,7 +154,7 @@ class InputContent extends Component {
     const {startDate, isOpenCategoryTable} = this.state;
     var newStartDate = new Date(startDate);
     const month = ((newStartDate.getMonth() + 1));
-    const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth() + 1)) - day;
+    const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth() + 1)) +1 - day;
     const percentage = ((parseInt(monthOfBudget) - this.monthOfCost()) / parseInt(monthOfBudget) * 100).toFixed(0)
     return (
       <div>
