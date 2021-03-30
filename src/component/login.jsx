@@ -145,31 +145,30 @@ export default class Login extends Component {
   signInWithFaceBookAccount = () =>{
     const {loginCallback, eventEmitter} = this.props;
     const provider = new firebase.auth.FacebookAuthProvider();
-    firebase.auth().signInWithPopup(provider).then( user => {
-      if(user) {
-        firebase.auth().getRedirectResult().then((result) => {
-          firebase.database().ref(`/account/${result.user.uid}`).set({
-            signup: new Date().getTime(),
-            email: result.user.email
-          }).then(() => {
-            // 儲存成功後顯示訊息
-            localStorage.setItem('account', result.user.uid);
-            eventEmitter.dispatch('accountRegister', result.user.uid.toString());
-            console.log('google email register successfully');
-            loginCallback && loginCallback(result.user.uid);
-          }).catch(err => {
-            // 註冊失敗時顯示錯誤訊息
-            this.setState({exist: true, error: true, message: 'account is exist'});
-            console.log('register failed');
-            return;
-          })
-        }).catch((error) => {
+    console.log(provider);
+    firebase.auth().signInWithPopup(provider).then( result => {
+      console.log('result:', result);
+      if(result) {
+        firebase.database().ref(`/account/${result.user.uid}`).set({
+          signup: new Date().getTime(),
+          email: result.user.email
+        }).then(() => {
+          // 儲存成功後顯示訊息
+          localStorage.setItem('account', result.user.uid);
+          eventEmitter.dispatch('accountRegister', result.user.uid.toString());
+          console.log('google email register successfully');
+          loginCallback && loginCallback(result.user.uid);
+        }).catch(err => {
+          // 註冊失敗時顯示錯誤訊息
+          this.setState({exist: true, error: true, message: 'account is exist'});
+          console.log('register failed');
+          return;
+        })
+      }}).catch((error) => {
           window.alert(error);
           console.log(error);
         });
-      }
-    });
-  }
+  };
 
   loginSelect = (status) => this.setState({loginStatus:status});
 
