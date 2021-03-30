@@ -38,7 +38,8 @@ export default {
     borderRadius: '4px',
     boxShadow: 'none',
     boxSizing: 'border-box',
-    width: '100%'
+    width: '100%',
+    fontSize: 'initial'
   },
   submit: {
     height: '30px',

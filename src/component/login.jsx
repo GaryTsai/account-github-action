@@ -115,29 +115,59 @@ export default class Login extends Component {
   signInWithGoogleAccount = () =>{
     const {loginCallback, eventEmitter} = this.props;
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        let date = new Date();
-        let now = date.getTime();
-        // 記錄相關資訊到 firebase realtime database
-        firebase.database().ref(`/account/${result.user.uid}`).set({
-          signup: now,
-          email: result.user.email
-        }).then(() => {
-          // 儲存成功後顯示訊息
-          localStorage.setItem('account', result.user.uid);
-          eventEmitter.dispatch('accountRegister',  result.user.uid.toString());
-          console.log('google email register successfully');
-          loginCallback && loginCallback(result.user.uid);
-        }).catch(err => {
-      // 註冊失敗時顯示錯誤訊息
-      this.setState({exist: true, error:true, message:'account is exist'});
-      console.log('register failed');
-      return ;
-    })
-      }).catch((error) => {
-        console.log(error);
+    firebase.auth().signInWithRedirect(provider)
+    firebase.auth().onAuthStateChanged( user => {
+      if(user) {
+        firebase.auth().getRedirectResult().then((result) => {
+          firebase.database().ref(`/account/${result.user.uid}`).set({
+            signup: new Date().getTime(),
+            email: result.user.email
+          }).then(() => {
+            // 儲存成功後顯示訊息
+            localStorage.setItem('account', result.user.uid);
+            eventEmitter.dispatch('accountRegister', result.user.uid.toString());
+            console.log('google email register successfully');
+            loginCallback && loginCallback(result.user.uid);
+          }).catch(err => {
+            // 註冊失敗時顯示錯誤訊息
+            this.setState({exist: true, error: true, message: 'account is exist'});
+            console.log('register failed');
+            return;
+          })
+        }).catch((error) => {
+          window.alert(error);
+          console.log(error);
+        });
+      }
+    });
+  }
+
+  signInWithFaceBookAccount = () =>{
+    const {loginCallback, eventEmitter} = this.props;
+    const provider = new firebase.auth.FacebookAuthProvider();
+    firebase.auth().signInWithPopup(provider).then( user => {
+      if(user) {
+        firebase.auth().getRedirectResult().then((result) => {
+          firebase.database().ref(`/account/${result.user.uid}`).set({
+            signup: new Date().getTime(),
+            email: result.user.email
+          }).then(() => {
+            // 儲存成功後顯示訊息
+            localStorage.setItem('account', result.user.uid);
+            eventEmitter.dispatch('accountRegister', result.user.uid.toString());
+            console.log('google email register successfully');
+            loginCallback && loginCallback(result.user.uid);
+          }).catch(err => {
+            // 註冊失敗時顯示錯誤訊息
+            this.setState({exist: true, error: true, message: 'account is exist'});
+            console.log('register failed');
+            return;
+          })
+        }).catch((error) => {
+          window.alert(error);
+          console.log(error);
+        });
+      }
     });
   }
 
@@ -174,11 +204,11 @@ export default class Login extends Component {
           <div style={styles.loginModal}>
             <div style={{...styles.logo, backgroundImage: 'url(' + require('./../assets/img/logo.png') + ')'}}></div>
             <div style={{display: 'flex', justifyContent: 'center', whiteSpace: 'nowrap'}}>
-              <div  id="item-submit"  style={{...styles.login, color: loginStatus === 'login' ? 'white' : 'black' , backgroundColor: loginStatus === 'login' ? '#009688' : 'white' }} onClick={() => this.loginSelect('login')}>登入
+              <div  id="item-submit" style={{...styles.login, color: loginStatus === 'login' ? 'white' : 'black' , backgroundColor: loginStatus === 'login' ? '#009688' : 'white' }} onClick={() => this.loginSelect('login')}>登入
               </div>
-              <div  id="item-submit" style={{...styles.register,color: loginStatus === 'register' ? 'white' : 'black' , backgroundColor: loginStatus === 'register' ? '#009688' : 'white' }} onClick={() => this.loginSelect('register')}>註冊
+              <div  id="item-submit" style={{...styles.register, color: loginStatus === 'register' ? 'white' : 'black' , backgroundColor: loginStatus === 'register' ? '#009688' : 'white' }} onClick={() => this.loginSelect('register')}>註冊
               </div>
-              <div t id="item-submit" style={{...styles.forgetPWD,color: loginStatus === 'forgetPWD' ? 'white' : 'black' , backgroundColor: loginStatus === 'forgetPWD' ? '#ff730e' : 'white' }} onClick={() => this.loginSelect('forgetPWD')}>忘記密碼
+              <div  id="item-submit" style={{...styles.forgetPWD, color: loginStatus === 'forgetPWD' ? 'white' : 'black' , backgroundColor: loginStatus === 'forgetPWD' ? '#ff730e' : 'white' }} onClick={() => this.loginSelect('forgetPWD')}>忘記密碼
               </div>
             </div>
             { loginStatus !== 'forgetPWD' && <div>
@@ -193,23 +223,32 @@ export default class Login extends Component {
               <button type="submit" id="item-login-submit" style={{...styles.loginSubmit}} onClick={() => this.getStatusMethod(loginStatus)}>確定
               </button>
             </div>}
-            { loginStatus === 'forgetPWD' && <div>
+            { loginStatus === 'forgetPWD' &&
               <div style={{...styles.inputAccount,lineHeight: '34px'}}>
-                <label>請填入你的帳號(email): </label>
+                <div>請填入你的帳號(email): </div>
                 <input style={{...styles.inputFrame, marginBottom: '30px'}}type="text" value={this.state.email}
                        onChange={(c) => this.inputEmail(c.target.value)}/>
                 <button type="submit" id="item-login-submit" style={{...styles.loginSubmit, border:'2px solid #ff730e'}} onClick={() => this.getStatusMethod(loginStatus)}>確定
                 </button>
-              </div>
-            </div>}
+              </div>}
             {loginStatus === 'forgetPWD' && <span style={{display: 'block', fontWeight: 'bold',padding: '20px'}}>請至填入的mail信箱重設您的密碼</span>}
-            {loginStatus === 'login' && <div className="OpenIdLoginModule">
+            {loginStatus === 'login' && <div>
+              <div className="OpenIdLoginModule">
                   <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
                     <img style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
                       <div>
                         以 Google 註冊並登入
                       </div>
                   </div>
+              </div>
+              <div className="OpenIdLoginModule">
+                <div className="oauth-google-inner" onClick={() => this.signInWithFaceBookAccount()}>
+                  <img style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
+                  <div>
+                    以 FaceBook 註冊並登入
+                  </div>
+                </div>
+              </div>
               </div>}
             {error && <div style={styles.error}>{message}</div>}
           </div>
