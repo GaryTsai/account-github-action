@@ -50,6 +50,7 @@ export default class Login extends Component {
     const {loginCallback, eventEmitter} = this.props;
     if(!account && !pwd ){
       this.setState({error:true, message:'Please input email&password'});
+      setTimeout(() =>this.setState({error:false, message: ''}), 5000)
       return ;
     }
     firebase.auth().signInWithEmailAndPassword(account, pwd)
@@ -63,7 +64,7 @@ export default class Login extends Component {
       })
       .catch((error) => {
         this.setState({error:true, message: error.message})
-        setTimeout(() =>this.setState({error:false, message: ''}), 2500)
+        setTimeout(() =>this.setState({error:false, message: ''}), 5000)
         return ;
       });
   };
@@ -72,6 +73,7 @@ export default class Login extends Component {
     const {loginCallback, eventEmitter} = this.props;
     if(!account && !pwd ){
       this.setState({error:true, message:'Please input email&password'});
+      setTimeout(() =>this.setState({error:false, message: ''}), 5000)
       return ;
     }
     let user = {
@@ -112,33 +114,34 @@ export default class Login extends Component {
     });
   };
 
-  signInWithGoogleAccount = () =>{
+  signInWithGoogleAccount = () => {
     const {loginCallback, eventEmitter} = this.props;
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider)
-    firebase.auth().onAuthStateChanged( user => {
-      if(user) {
-        firebase.auth().getRedirectResult().then((result) => {
-          firebase.database().ref(`/account/${result.user.uid}`).set({
-            signup: new Date().getTime(),
-            email: result.user.email
-          }).then(() => {
-            // 儲存成功後顯示訊息
-            localStorage.setItem('account', result.user.uid);
-            eventEmitter.dispatch('accountRegister', result.user.uid.toString());
-            console.log('google email register successfully');
-            loginCallback && loginCallback(result.user.uid);
-          }).catch(err => {
-            // 註冊失敗時顯示錯誤訊息
-            this.setState({exist: true, error: true, message: 'account is exist'});
-            console.log('register failed');
-            return;
-          })
-        }).catch((error) => {
-          window.alert(error);
-          console.log(error);
-        });
+    firebase.auth().signInWithPopup(provider).then((result) => {
+      if(this.state.loginStatus === 'register' && !result.additionalUserInfo.isNewUser) {
+        this.setState({exist: true, error: true, message: "The Google email of account is exist, please" +
+            " use other email"});
+        setTimeout(() =>this.setState({error:false, message: ''}), 5000)
+        return
       }
+      firebase.database().ref(`/account/${result.user.uid}`).set({
+        signup: new Date().getTime(),
+        email: result.user.email
+      }).then(() => {
+        // 儲存成功後顯示訊息
+        localStorage.setItem('account', result.user.uid);
+        eventEmitter.dispatch('accountRegister', result.user.uid.toString());
+        console.log('google email register successfully');
+        loginCallback && loginCallback(result.user.uid);
+      }).catch(err => {
+        // 註冊失敗時顯示錯誤訊息
+        this.setState({exist: true, error: true, message: 'account is exist'});
+        console.log('register failed');
+        return;
+      })
+    }).catch((error) => {
+      this.setState({exist: true, error: true, message: error.message.toString()});
+      setTimeout(() =>this.setState({error:false, message: ''}), 5000)
     });
   }
 
@@ -146,6 +149,12 @@ export default class Login extends Component {
     const {loginCallback, eventEmitter} = this.props;
     const provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then( result => {
+      if(this.state.loginStatus === 'register' && !result.additionalUserInfo.isNewUser) {
+        this.setState({exist: true, error: true, message: "The Facebook email of account is exist, please" +
+            " use other email"});
+        setTimeout(() =>this.setState({error:false, message: ''}), 5000)
+        return
+      }
       if(result) {
         firebase.database().ref(`/account/${result.user.uid}`).set({
           signup: new Date().getTime(),
@@ -163,8 +172,8 @@ export default class Login extends Component {
           return;
         })
       }}).catch((error) => {
-          window.alert(error);
-          console.log(error);
+      this.setState({exist: true, error: true, message: error.message.toString()});
+      setTimeout(() =>this.setState({error:false, message: ''}), 5000)
         });
   };
 
@@ -229,12 +238,12 @@ export default class Login extends Component {
                 </button>
               </div>}
             {loginStatus === 'forgetPWD' && <span style={{display: 'block', fontWeight: 'bold',padding: '20px'}}>請至填入的mail信箱重設您的密碼</span>}
-            {loginStatus === 'login' && <div>
+            {loginStatus !== 'forgetPWD' && <div>
               <div className="OpenIdLoginModule">
                   <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
                     <img style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
                       <div>
-                        以 Google 註冊並登入
+                        {loginStatus === 'login' ? '以 Google 登入': '以 Google 註冊並登入' }
                       </div>
                   </div>
               </div>
@@ -242,10 +251,14 @@ export default class Login extends Component {
                 <div className="oauth-google-inner" onClick={() => this.signInWithFaceBookAccount()}>
                   <img style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
                   <div>
-                    以 FaceBook 註冊並登入
+                    {loginStatus === 'login' ? '以 FaceBook 登入': '以 FaceBook 註冊並登入' }
                   </div>
                 </div>
               </div>
+              {loginStatus === 'register' && <div className="tooltip">
+                <img style={styles.icon}  src={require('./../assets/img/alert-icon.png')}/>
+                <span className="tooltiptext">Regardless of Faccebook or Google, the same email can only be registered once</span>
+              </div>}
               </div>}
             {error && <div style={styles.error}>{message}</div>}
           </div>

@@ -194,7 +194,7 @@ class DailyExpense extends Component {
     }
   }
   handleClick = () => {
-    this.setState({ isOpen: true });
+      this.setState({ isOpen: true });
   }
 
   handleCancel = () => {
@@ -209,8 +209,9 @@ class DailyExpense extends Component {
   getChartHeight = () =>{
     return window.innerHeight - 44 - 26.5 - 40
   };
+
   render() {
-    const {time} = this.state;
+    const {time, isOpen} = this.state;
     return (
       <div style={{ background:'#ffffff'}}>
         <div className="App">
@@ -218,7 +219,6 @@ class DailyExpense extends Component {
              onClick={this.handleClick}>
             <div style={{ backgroundColor:'#b8dbff', textAlign:'center', color:'black', fontSize: '20px',...styles.selectTime}}>{utils.dateFormat(time).slice(0,7)}</div>
           </div>
-
           <DatePicker
             value={this.state.time}
             isOpen={this.state.isOpen}

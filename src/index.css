@@ -16,3 +16,26 @@ code {
 div::-webkit-scrollbar {
   display: none;
 }
+.tooltip {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  margin: 20px;
+  /* Position the tooltip */
+  position: fixed;
+  z-index: 1;
+  font-size: 14px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}

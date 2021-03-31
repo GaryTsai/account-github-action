@@ -39,7 +39,8 @@ export default {
     boxShadow: 'none',
     boxSizing: 'border-box',
     width: '100%',
-    fontSize: 'initial'
+    fontSize: 'initial',
+    margin: '5px'
   },
   submit: {
     height: '30px',
@@ -91,9 +92,10 @@ export default {
     position: 'relative',
     padding: '3% 0%',
     top: '0%',
-    width: '100%',
+    width: '80%',
+    margin: '10%',
     display: 'flex',
-    marginTop: '20%',
+    marginTop: '10%',
     borderRadius: '10px',
     boxSizing: 'border-box',
     border: '3px solid red',
@@ -157,7 +159,7 @@ export default {
     fontSize: '16px'
   },
   span: {
-    color: 'black'
+    color: 'black',
   },
   mainExpense: {
     width: '100%',

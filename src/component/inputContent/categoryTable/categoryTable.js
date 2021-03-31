@@ -38,7 +38,7 @@ class categoryTable extends Component {
             <div key={'categoryFrame' + c}
               style={{
               backgroundColor: 'white',
-              margin: '10px',
+              margin: '8px',
               padding: '5px',
               display: 'inline-block',
               textAlign: 'center',
@@ -55,11 +55,11 @@ class categoryTable extends Component {
                    height: '35px',
                    backgroundRepeat: 'no-repeat',
                    zIndex: '5',
-                   margin: '10px',
+                   margin: '5px 10px',
                    backgroundImage: 'url(' + require('./../../../assets/img/'+category[c].resource) + ')'
                  }}
             />
-              <p style={{position: 'relative'}}>{category[c].className}</p>
+              <p style={{position: 'relative', margin: '5px 0px'}}>{category[c].className}</p>
             </div>
         )}
         </div>

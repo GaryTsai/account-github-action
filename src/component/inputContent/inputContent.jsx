@@ -142,7 +142,7 @@ class InputContent extends Component {
 
   closeCategoryList = () => this.setState({ isOpenCategoryTable: false});
 
-  isSmallDevices = () => window.screen.width < 410;
+  isSmallDevices = () => window.screen.width < 414;
 
   changeCategory = (category) =>{
     console.log(category);
@@ -199,6 +199,7 @@ class InputContent extends Component {
           {!this.isSmallDevices() && <div style={{
             display: 'flex',
             justifyContent: ' center',
+            alignItems: 'center'
           }}>
             <span style={styles.span}>預估預算: </span>
             <input type="text"
@@ -229,9 +230,9 @@ class InputContent extends Component {
           </span>
         </div>}
         <div style={styles.inputContainer}>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%'}}>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%', whiteSpace:'nowrap' }}>
             <label style={styles.inputTitle}>類別: </label>
-            <div style={{...styles.styleOfSelectCategory, width: window.screen.width > 414 ? '40%' :  '50%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
+            <div style={{...styles.styleOfSelectCategory, width: '100%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
             {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} selectCallback={this.changeCategory}/>}
             <label style={styles.inputTitle}>備註: </label>
             <input type="text" style={styles.inputFrame} value={this.state.inputContent}

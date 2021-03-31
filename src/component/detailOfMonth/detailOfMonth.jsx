@@ -24,7 +24,6 @@ export default class DetailOfMonth extends Component {
   };
 
   showDetailOfMonth = (items, dateArray) => {
-    console.log(dateArray);
     const days = utils.days(dateArray[0], dateArray[1]+1);
     const dateAndMonth = utils.format(dateArray[0], dateArray[1]);
     let array = {};
