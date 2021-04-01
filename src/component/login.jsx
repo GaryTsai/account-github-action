@@ -96,9 +96,9 @@ export default class Login extends Component {
           console.log('register successfully');
           loginCallback && loginCallback(u.user.uid);
         });
-      }).catch(err => {
+      }).catch(error => {
       // 註冊失敗時顯示錯誤訊息
-      this.setState({exist: true, error:true, message:'account is exist'});
+      this.setState({exist: true, error:true, message: error.message.toString()});
       console.log('register failed');
       return ;
     });
