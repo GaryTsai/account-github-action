@@ -89,18 +89,17 @@ export default {
     backgroundColor: 'white',
     color: 'red',
     fontSize: '16px',
-    position: 'relative',
+    position: 'absolute',
     padding: '3% 0%',
-    top: '0%',
     width: '80%',
     margin: '10%',
     display: 'flex',
     marginTop: '10%',
     borderRadius: '10px',
     boxSizing: 'border-box',
-    border: '3px solid red',
     fontFamily: 'sans-serif',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    border: '3px solid red'
   },
   inputAccount: {
     color: 'black',
