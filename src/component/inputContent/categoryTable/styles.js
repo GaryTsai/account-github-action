@@ -14,7 +14,6 @@ export default {
     }
   },
   selectCategory:{
-
     ':hover':{
       backgroundColor: 'rgba(0,123,209,0.74)',
       boxShadow: 'inset 0px 1px 0px rgba(0, 0, 0, 0.1)',

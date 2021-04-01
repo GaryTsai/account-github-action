@@ -230,7 +230,7 @@ class InputContent extends Component {
           </span>
         </div>}
         <div style={styles.inputContainer}>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%', whiteSpace:'nowrap' }}>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%' }}>
             <label style={styles.inputTitle}>類別: </label>
             <div style={{...styles.styleOfSelectCategory, width: '100%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
             {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} selectCallback={this.changeCategory}/>}

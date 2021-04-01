@@ -136,7 +136,8 @@ export default {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    whiteSpace:'nowrap'
   },
   inputBudget: {
     height: '40px',
