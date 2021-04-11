@@ -11,17 +11,14 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import utils from "../../utils/dateFormat";
 import styles from "./styles";
-
-
-
-
-
+var chart;
 am4core.useTheme(am4themes_animated);
 
 const initialState = {
   dailyExpenseOfMonth:'',
   year: new Date().getFullYear(),
-  time: new Date()
+  time: new Date(),
+  type: 'pie'
 };
 
 const monthMap = {
@@ -58,7 +55,86 @@ class DailyExpense extends Component {
     this.state = initialState;
   }
 
-  getMonthData = () =>{
+  getSortPieResult = (array) =>{
+    let sortable = [];
+    let temp_result = [];
+    for (var item in array) {
+      sortable.push([item, array[item]]);
+    }
+    sortable.sort(function(a, b) {
+      console.log(a, b);
+      return b[1] - a[1];
+    });
+    for (let index = sortable.length-1 ; index >= 0; index--) {
+      temp_result[sortable[index][0]] = sortable[index][1]
+    }
+    return temp_result
+  }
+
+  getPieChart =() =>{
+    const {items} = this.props;
+    const {time} = this.state;
+    const monthCategory =[];
+    const days =utils.days(time.getFullYear(),time.getMonth() + 1);
+
+    let category = [];
+    let array = [];
+    let filterMonthItem = '';
+    for (let d = 0; d <= days; d++) {
+      let dateOfTheMonth = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1);
+      filterMonthItem = items.filter(function (item) {
+        return item.date.includes(dateOfTheMonth);
+      });
+    }
+    for (let item = 0; item < filterMonthItem.length; item++) {
+      if(category.includes(filterMonthItem[item]['itemClass'])) {
+        array[filterMonthItem[item]['itemClass']] +=  parseInt(filterMonthItem[item]['itemValue']);
+      } else{
+        category.push(filterMonthItem[item]['itemClass']);
+        array[filterMonthItem[item]['itemClass']] = parseInt(filterMonthItem[item]['itemValue']);
+      }
+    }
+    var result = [];
+    result = this.getSortPieResult(array);
+    // data format
+    Object.keys(result).map((key)=>{
+      monthCategory.push({
+        category: key,
+        expense: result[key]
+      })
+    });
+    // Add data
+    chart.data = monthCategory
+    // Add and configure Series
+    var pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "expense";
+    pieSeries.dataFields.category = "category";
+    // inner text
+    if(window.screen.width <= 414) {
+      pieSeries.labels.template.disabled = true;
+      // pieSeries.ticks.template.disabled = true;
+      // pieSeries.alignLabels = false;
+      // pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+      // pieSeries.labels.template.radius = am4core.percent(-8);
+      // pieSeries.labels.template.fill = am4core.color("black");
+    }
+    chart.legend = new am4charts.Legend();
+    // Let's cut a hole in our Pie chart the size of 40% the radius
+    //     chart.innerRadius = am4core.percent(40);
+    // // Put a thick white border around each Slice
+    pieSeries.slices.template.stroke = am4core.color("#4a2abb");
+    pieSeries.slices.template.strokeWidth = 2;
+    pieSeries.slices.template.strokeOpacity = 1;
+    //logo disabled
+    chart.logo.disabled = true;
+    var colorSet = new am4core.ColorSet();
+    colorSet.list = ["#00b9e9", "#08fb7a", "#fbdf50", "#ff6846", "#f40020","#c4000e"].map(function (color) {
+      return new am4core.color(color);
+    });
+    pieSeries.colors = colorSet;
+  };
+
+  getBarChart = () =>{
     const {items} = this.props;
     const {time} = this.state;
     const dailyExpense =[];
@@ -86,19 +162,12 @@ class DailyExpense extends Component {
         dailyExpense: daily.reduce(function(accumulator, currentValue, currentIndex, array){return accumulator + parseInt(currentValue.itemValue); }, 0)
       })
     }
-// Themes begin
-    am4core.useTheme(am4themes_animated);
-// Themes end
 
-// Create chart instance
-    var chart = am4core.create("daily-expense", am4charts.XYChart);
+    // Create chart instance
     chart.scrollbarX = new am4core.Scrollbar();
-
-// Add data
+    // Add data
     chart.data = dailyExpense;
-
     prepareParetoData();
-
     function prepareParetoData(){
       var total = 0;
 
@@ -114,9 +183,9 @@ class DailyExpense extends Component {
         chart.data[i].pareto = sum / total * 100;
       }
     }
-// disabled
+    // disabled
     chart.logo.disabled = true;
-// Create axes
+    // Create axes
     var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
     categoryAxis.dataFields.category = "date";
     categoryAxis.renderer.grid.template.location = 0;
@@ -128,7 +197,7 @@ class DailyExpense extends Component {
     valueAxis.min = 0;
     valueAxis.cursorTooltipEnabled = false;
 
-// Create series
+    // Create series
     var series = chart.series.push(new am4charts.ColumnSeries());
     series.sequencedInterpolation = true;
     series.dataFields.valueY = "dailyExpense";
@@ -142,7 +211,7 @@ class DailyExpense extends Component {
     series.columns.template.column.cornerRadiusTopRight = 10;
     series.columns.template.column.fillOpacity = 0.8;
 
-// on hover, make corner radiuses bigger
+    // on hover, make corner radiuses bigger
     var hoverState = series.columns.template.column.states.create("hover");
     hoverState.properties.cornerRadiusTopLeft = 0;
     hoverState.properties.cornerRadiusTopRight = 0;
@@ -178,19 +247,32 @@ class DailyExpense extends Component {
     paretoSeries.stroke = new am4core.InterfaceColorSet().getFor("alternativeBackground");
     paretoSeries.strokeOpacity = 0.5;
 
-// Cursor
+    // Cursor
     chart.cursor = new am4charts.XYCursor();
     chart.cursor.behavior = "panX";
   }
 
+  getChart = (type) =>{
+    if(chart)
+      chart= null;
+    switch (type) {
+      case "bar":
+        chart = am4core.create("daily-expense", am4charts.XYChart);
+        return this.getBarChart();
+      case "pie":
+        chart = am4core.create("category-expense", am4charts.PieChart);
+        return this.getPieChart();
+    }
+  }
 
   componentDidMount() {
-    this.getMonthData();
+    const {type} = this.state;
+    this.getChart(type);
   }
 
   componentWillUnmount() {
-    if (this.chart) {
-      this.chart.dispose();
+    if (chart) {
+      chart.dispose();
     }
   }
   handleClick = () => {
@@ -202,22 +284,36 @@ class DailyExpense extends Component {
   }
 
   handleSelect = (time) => {
+    const {type} = this.state;
     this.setState({ time: new Date(time), isOpen: false });
-    setTimeout(()=>this.getMonthData());
+    setTimeout(() => this.getChart(type));
   }
 
+  selectChart = (type) => {
+    this.setState({ type: type }, () => this.getChart(type));
+  }
   getChartHeight = () =>{
-    return window.innerHeight - 44 - 26.5 - 40
+    return window.innerHeight - 44 - 26.5 - 40 -32
   };
 
   render() {
-    const {time, isOpen} = this.state;
+    const {time, isOpen, type} = this.state;
     return (
       <div style={{ background:'#ffffff'}}>
         <div className="App">
           <div style={{ cursor:'pointer'}}
              onClick={this.handleClick}>
             <div style={{ backgroundColor:'#b8dbff', textAlign:'center', color:'black', fontSize: '20px',...styles.selectTime}}>{utils.dateFormat(time).slice(0,7)}</div>
+          </div>
+          <div style={{ width:'-webkit-fill-available', display: 'flex', fontSize: '14px', color: 'black', textAlign: 'center'}}>
+            <div key={'pie-chat'} style={type === 'pie' ? styles.activeChart : styles.chart}
+                 onClick={()=>this.selectChart('pie')}>
+              支出類別比(圖表分析)
+            </div>
+            <div key={'bar-chat'} style={type === 'bar' ? styles.activeChart : styles.chart}
+                 onClick={()=>this.selectChart('bar')}>
+              每日支出圖(圖表分析)
+            </div>
           </div>
           <DatePicker
             value={this.state.time}
@@ -226,7 +322,8 @@ class DailyExpense extends Component {
             dateConfig={dateConfig}
             onCancel={this.handleCancel} />
         </div>
-        <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight() }}/>
+        {type === 'bar' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight() }}/>}
+        {type === 'pie' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)'}}/>}
       </div>
     );
   }
