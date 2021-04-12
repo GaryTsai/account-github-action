@@ -265,18 +265,12 @@ class DailyExpense extends Component {
 
   componentDidMount() {
     document.getElementById('chart-page').addEventListener('touchstart', (event) => {
-      if (event.touches.length > 1) {
-        event.preventDefault();
-      }
+    event.preventDefault();
     });
 
     let lastTouchEnd = 0;
     document.getElementById('chart-page').addEventListener('touchend', (event) => {
-      const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) {
-        event.preventDefault();
-      }
-      lastTouchEnd = now;
+    event.preventDefault();
     }, false);
     const {type} = this.state;
     this.getChart(type);

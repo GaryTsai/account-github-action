@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -53,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
+            <state relative-caret-position="79">
+              <caret line="267" column="25" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#349#398#0" expanded="true" />
@@ -66,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="41">
@@ -210,8 +209,8 @@
         <option value="$PROJECT_DIR$/src/component/inputContent/styles.js" />
         <option value="$PROJECT_DIR$/src/component/login.jsx" />
         <option value="$PROJECT_DIR$/src/component/charts/styles.js" />
-        <option value="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" />
         <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" />
       </list>
     </option>
   </component>
@@ -351,12 +350,12 @@
       <workItem from="1613658764745" duration="57599000" />
       <workItem from="1615479012796" duration="1213000" />
       <workItem from="1615818091213" duration="20761000" />
-      <workItem from="1618068557236" duration="26548000" />
+      <workItem from="1618068557236" duration="27600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296332000" />
+    <option name="totallyTimeSpent" value="297384000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -766,21 +765,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#349#398#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
           <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="267" column="25" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#349#398#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
