@@ -4,7 +4,6 @@
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/charts/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/styles.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -57,8 +56,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="303" column="124" selection-start-line="303" selection-start-column="124" selection-end-line="303" selection-end-column="124" />
+            <state relative-caret-position="378">
+              <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#349#398#0" expanded="true" />
@@ -67,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="41">
+              <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -94,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/charts/styles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="28" selection-start-line="28" selection-end-line="34" selection-end-column="3" />
+            <state relative-caret-position="363">
+              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -150,11 +149,11 @@
       <find>this.getM</find>
       <find>brow</find>
       <find>isMobile</find>
-      <find>zoom</find>
       <find>getSortResult</find>
       <find>getBa</find>
       <find>getPie</find>
       <find>getPieChart</find>
+      <find>zoom</find>
       <find>styles</find>
     </findStrings>
   </component>
@@ -210,9 +209,9 @@
         <option value="$PROJECT_DIR$/src/component/inputContent/inputContent.jsx" />
         <option value="$PROJECT_DIR$/src/component/inputContent/styles.js" />
         <option value="$PROJECT_DIR$/src/component/login.jsx" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" />
         <option value="$PROJECT_DIR$/src/component/charts/styles.js" />
+        <option value="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -352,12 +351,12 @@
       <workItem from="1613658764745" duration="57599000" />
       <workItem from="1615479012796" duration="1213000" />
       <workItem from="1615818091213" duration="20761000" />
-      <workItem from="1618068557236" duration="25708000" />
+      <workItem from="1618068557236" duration="26548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295492000" />
+    <option name="totallyTimeSpent" value="296332000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -743,13 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/charts.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/.internal/themes/animated.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -760,17 +752,24 @@
     <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/themes/animated.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/src/component/charts/styles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="363">
+          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/charts.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="303" column="124" selection-start-line="303" selection-start-column="124" selection-end-line="303" selection-end-column="124" />
+        <state relative-caret-position="378">
+          <caret line="271" lean-forward="true" selection-start-line="271" selection-end-line="271" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#349#398#0" expanded="true" />
@@ -778,10 +777,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/charts/styles.js">
+    <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="28" selection-start-line="28" selection-end-line="34" selection-end-column="3" />
+        <state relative-caret-position="41">
+          <caret line="31" column="81" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="81" />
         </state>
       </provider>
     </entry>

@@ -30,24 +30,6 @@
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
     <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script>
-      window.onload = () => {
-        document.addEventListener('touchstart', (event) => {
-          if (event.touches.length > 1) {
-            event.preventDefault();
-          }
-        });
-
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (event) => {
-          const now = (new Date()).getTime();
-          if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-          }
-          lastTouchEnd = now;
-        }, false);
-      }
-    </script>
     <title>Account Record</title>
   </head>
   <body>

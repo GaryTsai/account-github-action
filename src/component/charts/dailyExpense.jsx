@@ -264,6 +264,20 @@ class DailyExpense extends Component {
   }
 
   componentDidMount() {
+    document.getElementById('chart-page').addEventListener('touchstart', (event) => {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    });
+
+    let lastTouchEnd = 0;
+    document.getElementById('chart-page').addEventListener('touchend', (event) => {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
     const {type} = this.state;
     this.getChart(type);
   }
@@ -297,7 +311,7 @@ class DailyExpense extends Component {
   render() {
     const {time, isOpen, type} = this.state;
     return (
-      <div style={{ background:'#ffffff'}}>
+      <div  id="chart-page"style={{ background:'#ffffff'}}>
         <div className="App">
           <div style={{ cursor:'pointer'}}
              onClick={this.handleClick}>
