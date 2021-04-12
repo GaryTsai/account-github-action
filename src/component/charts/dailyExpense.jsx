@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Radium from "radium";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import am4themes_material from "@amcharts/amcharts4/themes/material";
+import am4themes_animated from "@amcharts/amcharts4/themes/material";
 import "react-circular-progressbar/dist/styles.css";
 
 // import DatePicker from "react-datepicker";
@@ -12,7 +13,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import utils from "../../utils/dateFormat";
 import styles from "./styles";
 var chart;
-am4core.useTheme(am4themes_animated);
 
 const initialState = {
   dailyExpenseOfMonth:'',
@@ -62,8 +62,7 @@ class DailyExpense extends Component {
       sortable.push([item, array[item]]);
     }
     sortable.sort(function(a, b) {
-      console.log(a, b);
-      return b[1] - a[1];
+      return a[1] - b[1];
     });
     for (let index = sortable.length-1 ; index >= 0; index--) {
       temp_result[sortable[index][0]] = sortable[index][1]
@@ -109,29 +108,25 @@ class DailyExpense extends Component {
     var pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "expense";
     pieSeries.dataFields.category = "category";
+    pieSeries.legendSettings.valueText = "${value}元    [bold {color}]{value.percent.formatNumber('#.0')}%";
     // inner text
     if(window.screen.width <= 414) {
       pieSeries.labels.template.disabled = true;
-      // pieSeries.ticks.template.disabled = true;
+      pieSeries.ticks.template.disabled = true;
       // pieSeries.alignLabels = false;
       // pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
-      // pieSeries.labels.template.radius = am4core.percent(-8);
+      pieSeries.labels.template.radius = am4core.percent(8);
       // pieSeries.labels.template.fill = am4core.color("black");
     }
     chart.legend = new am4charts.Legend();
+    // chart.legendSettings.labelText = "Series: [bold {color}]{name}[/]";
+    // chart.legendSettings.valueText = "{valueY.close}";
+    // chart.legendSettings.itemValueText = "[bold]{valueY}[/bold]";
     // Let's cut a hole in our Pie chart the size of 40% the radius
-    //     chart.innerRadius = am4core.percent(40);
-    // // Put a thick white border around each Slice
-    pieSeries.slices.template.stroke = am4core.color("#4a2abb");
-    pieSeries.slices.template.strokeWidth = 2;
-    pieSeries.slices.template.strokeOpacity = 1;
+        chart.innerRadius = am4core.percent(40);
+    // Put a thick white border around each Slice
     //logo disabled
     chart.logo.disabled = true;
-    var colorSet = new am4core.ColorSet();
-    colorSet.list = ["#00b9e9", "#08fb7a", "#fbdf50", "#ff6846", "#f40020","#c4000e"].map(function (color) {
-      return new am4core.color(color);
-    });
-    pieSeries.colors = colorSet;
   };
 
   getBarChart = () =>{
@@ -255,11 +250,14 @@ class DailyExpense extends Component {
   getChart = (type) =>{
     if(chart)
       chart= null;
+    am4core.useTheme(am4themes_material);
     switch (type) {
       case "bar":
+        am4core.unuseTheme(am4themes_material);
         chart = am4core.create("daily-expense", am4charts.XYChart);
         return this.getBarChart();
       case "pie":
+        am4core.useTheme(am4themes_material);
         chart = am4core.create("category-expense", am4charts.PieChart);
         return this.getPieChart();
     }
