@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="110" column="51" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
+            <state relative-caret-position="241">
+              <caret line="114" column="36" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#349#398#0" expanded="true" />
@@ -79,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/charts.d.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="61">
-              <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+              <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -344,12 +344,12 @@
       <workItem from="1613658764745" duration="57599000" />
       <workItem from="1615479012796" duration="1213000" />
       <workItem from="1615818091213" duration="20761000" />
-      <workItem from="1618068557236" duration="23579000" />
+      <workItem from="1618068557236" duration="24299000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293363000" />
+    <option name="totallyTimeSpent" value="294083000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -362,7 +362,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85259634" visible="true" weight="0.21730515" />
       <window_info id="Structure" order="1" sideWeight="0.14740369" side_tool="true" visible="true" weight="0.21730515" />
@@ -378,8 +377,8 @@
       <window_info anchor="bottom" id="TODO" order="7" weight="0.16855524" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.51321006" side_tool="true" visible="true" weight="0.15439093" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.48678997" visible="true" weight="0.15439093" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51321006" side_tool="true" visible="true" weight="0.15439093" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48678997" visible="true" weight="0.15439093" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -746,7 +745,7 @@
     <entry file="file://$PROJECT_DIR$/node_modules/@amcharts/amcharts4/charts.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="61">
-          <caret line="4" column="18" lean-forward="true" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -769,8 +768,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="110" column="51" selection-start-line="110" selection-start-column="51" selection-end-line="110" selection-end-column="51" />
+        <state relative-caret-position="241">
+          <caret line="114" column="36" selection-start-line="114" selection-start-column="36" selection-end-line="114" selection-end-column="36" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#349#398#0" expanded="true" />

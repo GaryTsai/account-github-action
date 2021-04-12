@@ -109,10 +109,10 @@ class DailyExpense extends Component {
     pieSeries.dataFields.value = "expense";
     pieSeries.dataFields.category = "category";
     pieSeries.legendSettings.valueText = "${value}元    [bold {color}]{value.percent.formatNumber('#.0')}%";
+    pieSeries.labels.template.disabled = true;
+    pieSeries.ticks.template.disabled = true;
     // inner text
     if(window.screen.width <= 414) {
-      pieSeries.labels.template.disabled = true;
-      pieSeries.ticks.template.disabled = true;
       // pieSeries.alignLabels = false;
       // pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
       pieSeries.labels.template.radius = am4core.percent(8);
