@@ -16,15 +16,14 @@ export default {
     padding: '5px'
   },
   chart: {
-    cursor:'pointer',
-    width:'50%',
+    cursor: 'pointer',
+    width: '50%',
     backgroundColor: 'white',
     padding: '5px',
     zIndex: 0,
-    ':hover':{
+    ':hover': {
       opacity: 0.8,
       backgroundColor: '#d5d4ec'
-    }
+    },
   }
-
 }

@@ -320,8 +320,8 @@ class DailyExpense extends Component {
             dateConfig={dateConfig}
             onCancel={this.handleCancel} />
         </div>
-        {type === 'bar' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight() }}/>}
-        {type === 'pie' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)'}}/>}
+        {type === 'bar' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
+        {type === 'pie' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
       </div>
     );
   }
