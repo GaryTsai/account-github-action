@@ -264,15 +264,8 @@ class DailyExpense extends Component {
   }
 
   componentDidMount() {
-    document.getElementById('chart-page').addEventListener('touchstart', (event) => {
-    event.preventDefault();
-    });
-
-    let lastTouchEnd = 0;
-    document.getElementById('chart-page').addEventListener('touchend', (event) => {
-    event.preventDefault();
-    }, false);
     const {type} = this.state;
+    this.disableTouchInMobile();
     this.getChart(type);
   }
 
@@ -281,6 +274,16 @@ class DailyExpense extends Component {
       chart.dispose();
     }
   }
+
+  disableTouchInMobile = () =>{
+    document.getElementById('chart-page').addEventListener('touchstart', (event) => {
+      event.preventDefault();
+    });
+    document.getElementById('chart-page').addEventListener('touchend', (event) => {
+      event.preventDefault();
+    }, false);
+  }
+
   handleClick = () => {
       this.setState({ isOpen: true });
   }
@@ -305,7 +308,7 @@ class DailyExpense extends Component {
   render() {
     const {time, isOpen, type} = this.state;
     return (
-      <div  id="chart-page"style={{ background:'#ffffff'}}>
+      <div style={{ background:'#ffffff'}}>
         <div className="App">
           <div style={{ cursor:'pointer'}}
              onClick={this.handleClick}>
@@ -328,8 +331,10 @@ class DailyExpense extends Component {
             dateConfig={dateConfig}
             onCancel={this.handleCancel} />
         </div>
+        <div id="chart-page">
         {type === 'bar' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
         {type === 'pie' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
+        </div>
       </div>
     );
   }

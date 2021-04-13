@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d805343-2220-42e3-b0bc-3774cf137aa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/charts/dailyExpense.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="79">
-              <caret line="267" column="25" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+              <caret line="267" column="4" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#349#398#0" expanded="true" />
@@ -350,12 +350,12 @@
       <workItem from="1613658764745" duration="57599000" />
       <workItem from="1615479012796" duration="1213000" />
       <workItem from="1615818091213" duration="20761000" />
-      <workItem from="1618068557236" duration="27600000" />
+      <workItem from="1618068557236" duration="28134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="297384000" />
+    <option name="totallyTimeSpent" value="297918000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -368,6 +368,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.85259634" visible="true" weight="0.21730515" />
       <window_info id="Structure" order="1" sideWeight="0.14740369" side_tool="true" visible="true" weight="0.21730515" />
@@ -775,7 +776,7 @@
     <entry file="file://$PROJECT_DIR$/src/component/charts/dailyExpense.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
-          <caret line="267" column="25" selection-start-line="267" selection-start-column="25" selection-end-line="267" selection-end-column="25" />
+          <caret line="267" column="4" selection-start-line="267" selection-start-column="4" selection-end-line="267" selection-end-column="4" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#349#398#0" expanded="true" />
