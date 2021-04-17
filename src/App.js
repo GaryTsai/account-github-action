@@ -136,7 +136,6 @@ export default class App extends Component {
       snapshot.forEach(element => {
         items.unshift(element.val());
       });
-
       if(items.length === 1  && items[0].budget){
         self.setState({loading: false});
         return;
@@ -159,7 +158,6 @@ export default class App extends Component {
 
   deleteItem = (timestamp) => {
     const {date, account} = this.state;
-    console.log(account);
     let delRef = firebase.database().ref(`/expense/${account}` );
     delRef.child(`${timestamp}`).remove().then(function () {
       eventEmitter.dispatch('itemDelete', date.toString());

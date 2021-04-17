@@ -110,13 +110,14 @@ class Content extends Component {
 
   render() {
     const {theItems, isEdit, editCategory, editValue, editContent} = this.state;
+
     return (
       <div style={{...styles.items, textAlign: 'left'}}>
         {theItems && theItems.map((c, idx) => (
           <div key={'itemShow' + idx}>
             {!isEdit[idx] && <li style={{...styles.item, listStyleType: 'none'}} key={'item' + idx}>
-              <span>{c.itemClass}</span>
-              <span>{c.itemValue}$NT</span>
+              <span>{c.itemClass} </span>
+              <span>{c.itemValue}$NT<p style={styles.account}>{c.accountClass}</p></span>
               <span>備註:{c.itemContent}</span>
               <span><img onClick={() => this.isEdit(idx)} key={'content-edit' + idx} style={styles.editIcon}
                          alt="cost of item" src={require('../../assets/img/item-edit.png')}/></span>

@@ -18,7 +18,7 @@ const initialState = {
   dailyExpenseOfMonth:'',
   year: new Date().getFullYear(),
   time: new Date(),
-  type: 'pie'
+  type: 'categoryExpense'
 };
 
 const monthMap = {
@@ -56,11 +56,9 @@ class DailyExpense extends Component {
   }
 
   getSortPieResult = (array) =>{
-    let sortable = [];
     let temp_result = [];
-    for (var item in array) {
-      sortable.push([item, array[item]]);
-    }
+    //ES7  Object.entries
+    let sortable = Object.entries(array);
     sortable.sort(function(a, b) {
       return a[1] - b[1];
     });
@@ -70,12 +68,11 @@ class DailyExpense extends Component {
     return temp_result
   }
 
-  getPieChart =() =>{
+  getAccountPieChart =() =>{
     const {items} = this.props;
     const {time} = this.state;
     const monthCategory =[];
     const days =utils.days(time.getFullYear(),time.getMonth() + 1);
-
     let category = [];
     let array = [];
     let filterMonthItem = '';
@@ -93,13 +90,13 @@ class DailyExpense extends Component {
         array[filterMonthItem[item]['itemClass']] = parseInt(filterMonthItem[item]['itemValue']);
       }
     }
-    var result = [];
-    result = this.getSortPieResult(array);
+    let result = this.getSortPieResult(array);
     // data format
-    Object.keys(result).map((key)=>{
+    Object.entries(result).forEach(([key, value]) => {
+      console.log(key,value);
       monthCategory.push({
-        category: key,
-        expense: result[key]
+        accountCategory: key,
+        expense: value
       })
     });
     // Add data
@@ -107,7 +104,65 @@ class DailyExpense extends Component {
     // Add and configure Series
     var pieSeries = chart.series.push(new am4charts.PieSeries());
     pieSeries.dataFields.value = "expense";
-    pieSeries.dataFields.category = "category";
+    pieSeries.dataFields.category = "accountCategory";
+    pieSeries.legendSettings.valueText = "${value}元    [bold {color}]{value.percent.formatNumber('#.0')}%";
+    pieSeries.labels.template.disabled = true;
+    pieSeries.ticks.template.disabled = true;
+    // inner text
+    if(window.screen.width <= 414) {
+      // pieSeries.alignLabels = false;
+      // pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+      pieSeries.labels.template.radius = am4core.percent(8);
+      // pieSeries.labels.template.fill = am4core.color("black");
+    }
+    chart.legend = new am4charts.Legend();
+    // chart.legendSettings.labelText = "Series: [bold {color}]{name}[/]";
+    // chart.legendSettings.valueText = "{valueY.close}";
+    // chart.legendSettings.itemValueText = "[bold]{valueY}[/bold]";
+    // Let's cut a hole in our Pie chart the size of 40% the radius
+    chart.innerRadius = am4core.percent(40);
+    // Put a thick white border around each Slice
+    //logo disabled
+    chart.logo.disabled = true;
+  };
+
+  getCategoryPieChart =() =>{
+    const {items} = this.props;
+    const {time} = this.state;
+    const monthCategory =[];
+    const days =utils.days(time.getFullYear(),time.getMonth() + 1);
+    let category = [];
+    let array = [];
+    let filterMonthItem = '';
+    for (let d = 0; d <= days; d++) {
+      let dateOfTheMonth = time.getFullYear() + '-' + utils.toDualDigit(time.getMonth() + 1);
+      filterMonthItem = items.filter(function (item) {
+        return item.date.includes(dateOfTheMonth);
+      });
+    }
+    for (let item = 0; item < filterMonthItem.length; item++) {
+      if(category.includes(filterMonthItem[item]['accountClass'])) {
+        array[filterMonthItem[item]['accountClass']] +=  parseInt(filterMonthItem[item]['itemValue']);
+      } else{
+        category.push(filterMonthItem[item]['accountClass']);
+        array[filterMonthItem[item]['accountClass']] = parseInt(filterMonthItem[item]['itemValue']);
+      }
+    }
+    let result = this.getSortPieResult(array);
+    // data format
+    Object.entries(result).forEach(([key, value]) => {
+      console.log(key,value);
+        monthCategory.push({
+          accountCategory: key,
+          expense: value
+        })
+    });
+    // Add data
+    chart.data = monthCategory
+    // Add and configure Series
+    var pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "expense";
+    pieSeries.dataFields.category = "accountCategory";
     pieSeries.legendSettings.valueText = "${value}元    [bold {color}]{value.percent.formatNumber('#.0')}%";
     pieSeries.labels.template.disabled = true;
     pieSeries.ticks.template.disabled = true;
@@ -251,15 +306,20 @@ class DailyExpense extends Component {
     if(chart)
       chart= null;
     am4core.useTheme(am4themes_material);
+    console.log(type);
     switch (type) {
-      case "bar":
+      case "dailyExpense":
         am4core.unuseTheme(am4themes_material);
         chart = am4core.create("daily-expense", am4charts.XYChart);
         return this.getBarChart();
-      case "pie":
+      case "categoryExpense":
         am4core.useTheme(am4themes_material);
         chart = am4core.create("category-expense", am4charts.PieChart);
-        return this.getPieChart();
+        return this.getCategoryPieChart();
+      case "accountExpense":
+        am4core.useTheme(am4themes_material);
+        chart = am4core.create("account-expense", am4charts.PieChart);
+        return this.getAccountPieChart();
     }
   }
 
@@ -315,12 +375,16 @@ class DailyExpense extends Component {
             <div style={{ backgroundColor:'#b8dbff', textAlign:'center', color:'black', fontSize: '20px',...styles.selectTime}}>{utils.dateFormat(time).slice(0,7)}</div>
           </div>
           <div style={{ width:'-webkit-fill-available', display: 'flex', fontSize: '14px', color: 'black', textAlign: 'center'}}>
-            <div key={'pie-chat'} style={type === 'pie' ? styles.activeChart : styles.chart}
-                 onClick={()=>this.selectChart('pie')}>
+            <div key={'pie-chart'} style={type === 'categoryExpense' ? styles.activeChart : styles.chart}
+                 onClick={()=>this.selectChart('categoryExpense')}>
               支出類別比(圖表分析)
             </div>
-            <div key={'bar-chat'} style={type === 'bar' ? styles.activeChart : styles.chart}
-                 onClick={()=>this.selectChart('bar')}>
+            <div key={'account-chart'} style={type === 'accountExpense' ? styles.activeChart : styles.chart}
+                 onClick={()=>this.selectChart('accountExpense')}>
+              支出帳戶比(圖表分析)
+            </div>
+            <div key={'bar-chart'} style={type === 'dailyExpense' ? styles.activeChart : styles.chart}
+                 onClick={()=>this.selectChart('dailyExpense')}>
               每日支出圖(圖表分析)
             </div>
           </div>
@@ -332,8 +396,9 @@ class DailyExpense extends Component {
             onCancel={this.handleCancel} />
         </div>
         <div id="chart-page">
-        {type === 'bar' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
-        {type === 'pie' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
+        {type === 'dailyExpense' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
+        {type === 'categoryExpense' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
+        {type === 'accountExpense' && <div id="account-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
         </div>
       </div>
     );

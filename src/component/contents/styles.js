@@ -5,6 +5,12 @@ export default {
     color: 'black',
 
   },
+  account:{
+    fontSize: '12px',
+    color: 'rgba(0,75,169,0.56)',
+    margin: '0px',
+    display: 'inline-block'
+  },
   item: {
     width: '100%',
     height:'45px',
@@ -42,6 +48,7 @@ export default {
   editTitle: {
     color: 'black',
     fontSize: '14px',
+    textAlign: 'center'
   },
   editFinish: {
     height: '30px',
@@ -55,6 +62,7 @@ export default {
     boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.3s ease 0s',
     outline: 'none',
+    whiteSpace: 'nowrap',
     ':hover':{
       background: '#4CAF50',
     }

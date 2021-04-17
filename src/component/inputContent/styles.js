@@ -2,7 +2,7 @@ import React from "react";
 
 export default {
   inputContainer: {
-    height: '40px',
+    height: '45px',
     width: '100%',
     display: 'flex',
     alignItems: 'center',
@@ -32,25 +32,24 @@ export default {
   },
   inputFrame: {
     height: '30px',
-    padding: '6px 10px',
+    padding: '6px 4px',
     backgroundColor: '#fff',
     border: '1px solid #D1D1D1',
     borderRadius: '4px',
     boxShadow: 'none',
     boxSizing: 'border-box',
     width: '100%',
-    fontSize: 'initial',
+    fontSize: '14px',
     margin: '5px'
   },
   submit: {
     height: '30px',
-    width: '20%',
+    width: '100%',
     background: '#ffcc5b',
     border: '0 none',
     cursor: 'pointer',
     fontSize: '14px',
-    borderRadius: '10px',
-    margin: '1px',
+    margin: '0 auto',
     boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.3s ease 0s',
     outline: 'none',
@@ -246,7 +245,8 @@ export default {
     boxShadow: 'rgb(0 0 0 / 20%) 0px 8px 15px',
     transition: 'all 0.3s ease 0s',
     outline: 'none',
-    border: '2px solid rgb(0, 150, 136)'
+    border: '2px solid rgb(0, 150, 136)',
+    whiteSpace: 'nowrap'
   },
   icon:{
     height:'16px',

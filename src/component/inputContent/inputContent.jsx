@@ -18,17 +18,21 @@ import "firebase/auth";
 import "firebase/firestore";
 import utils from "../../utils/dateFormat";
 import CategoryTable from "./categoryTable/categoryTable";
+import AccountTable from "./accountTable/accountTable";
+
 const month = utils.toDualDigit(new Date().getMonth() + 1);
 const day = utils.toDualDigit(new Date().getDate());
 const initialState = {
   inputCategory: '早餐',
   inputContent: '',
   inputValue: '',
+  inputAccount: '現金',
   date: new Date().getDate().toString(),
   startDate: new Date(),
   recordDate: new Date().getFullYear() + '-' + month + '-' + day,
   isOpen: false,
-  isOpenCategoryTable: false
+  isOpenCategoryTable: false,
+  isOpenAccountTable: false
 };
 
 class InputContent extends Component {
@@ -52,6 +56,7 @@ class InputContent extends Component {
     }
     items.push({
       date: recordDate,
+      accountClass: this.state.inputAccount,
       itemClass: this.state.inputCategory,
       itemContent: this.state.inputContent,
       itemValue: this.state.inputValue
@@ -63,7 +68,8 @@ class InputContent extends Component {
       date: recordDate,
       itemClass: this.state.inputCategory,
       itemContent: this.state.inputContent,
-      itemValue: this.state.inputValue
+      itemValue: this.state.inputValue,
+      accountClass: this.state.inputAccount,
     }).then(function () {
       console.log("新增Post成功");
     }).catch(function (err) {
@@ -84,6 +90,8 @@ class InputContent extends Component {
   };
 
   inputCategory = (value) => this.setState({inputCategory: value});
+
+  inputAccountContent = (account) => this.setState({inputAccount: account});
 
   monthOfCost = () => {
     const {items} = this.props;
@@ -138,24 +146,38 @@ class InputContent extends Component {
     this.setState({isOpen: true});
   };
 
-  openCategoryList = () => this.setState({ isOpenCategoryTable: true});
+  openCategoryList = () => {
+    if(this.state.isOpenAccountTable) return;
+    this.setState({isOpenCategoryTable: true});
+  }
 
   closeCategoryList = () => this.setState({ isOpenCategoryTable: false});
+
+  openAccountList = () => {
+    if(this.state.isOpenCategoryTable) return;
+    this.setState({isOpenAccountTable: true});
+  }
+
+  closeAccountList = () => this.setState({ isOpenAccountTable: false});
 
   isSmallDevices = () => window.screen.width < 414;
 
   changeCategory = (category) =>{
-    console.log(category);
     this.setState({inputCategory: category, isOpenCategoryTable:false})
   };
 
+  changeAccount = (account) =>{
+    this.setState({inputAccount: account, isOpenAccountTable:false})
+  };
+
   render() {
-    const {items, monthOfBudget} = this.props;
-    const {startDate, isOpenCategoryTable} = this.state;
+    const {items, monthOfBudget, account} = this.props;
+    const {startDate, isOpenCategoryTable, isOpenAccountTable} = this.state;
     var newStartDate = new Date(startDate);
     const month = ((newStartDate.getMonth() + 1));
     const remainDays = (utils.days(new Date().getFullYear(), new Date().getMonth() + 1)) +1 - day;
     const percentage = ((parseInt(monthOfBudget) - this.monthOfCost()) / parseInt(monthOfBudget) * 100).toFixed(0)
+    const isSmallDevice = window.screen.width <= 450;
     return (
       <div>
         <div style={styles.mainExpense}>
@@ -230,7 +252,10 @@ class InputContent extends Component {
           </span>
         </div>}
         <div style={styles.inputContainer}>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '80%' }}>
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+            <label style={styles.inputTitle}>帳戶: </label>
+            <div style={{...styles.styleOfSelectCategory, border:'2px solid #ffbf00', width: '100%'}} onClick={()=>this.openAccountList()}>{this.state.inputAccount}</div>
+            {isOpenAccountTable && <AccountTable account={account} closeCallback={() => this.closeAccountList()} selectCallback={this.changeAccount}/>}
             <label style={styles.inputTitle}>類別: </label>
             <div style={{...styles.styleOfSelectCategory, width: '100%'}}onClick={()=>this.openCategoryList()}>{this.state.inputCategory}</div>
             {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} selectCallback={this.changeCategory}/>}
@@ -240,10 +265,12 @@ class InputContent extends Component {
             <label style={styles.inputTitle}>費用: </label>
             <input type="text" style={styles.inputFrame} value={this.state.inputValue}
                    onChange={(c) => this.inputValue(c.target.value)}/>
+            {!isSmallDevice && <button type="submit" key={"item-submit"} style={{...styles.submit,margin: '0px 5px', borderRadius: '10px'}} onClick={() => this.submitContent()}>儲存
+            </button>}
           </div>
-          <button type="submit" key={"item-submit"} style={{...styles.submit}} onClick={() => this.submitContent()}>儲存
-          </button>
         </div>
+        {isSmallDevice && <button type="submit" key={"item-submit"} style={{...styles.submit, borderTop: '1px solid black'}} onClick={() => this.submitContent()}>儲存
+        </button>}
       </div>
     )
   }
