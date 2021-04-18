@@ -326,7 +326,7 @@ export default class App extends Component {
             <InputContent eventEmitter={eventEmitter} items={allItems} monthOfBudget={monthOfBudget} account={account} setBudgetCallback={this.setBudget}  updateItemCallback={this.updateItem} dateTime={date}
             itemCallback={this.itemCallback} datePickerDate={datePickerDate}/>}
             {route === 'record'  &&
-            <Content items={todayItems} updateItemCallback={this.updateItem}deleteCallback={this.deleteItem} dateTime={date} account={account}/>}
+            <Content items={todayItems} updateItemCallback={this.updateItem} deleteCallback={this.deleteItem} dateTime={date} account={account}/>}
             {route === 'total'  && <TotalExpense items={allItems} detailOfMonth={this.showDetailOfMonth}/>}
             {route === 'detailOfMonth'  && <DetailMonth items={allItems} year={year} month={month} deleteCallback={this.deleteItem}  annualMonth={annualMonth} updateShowDetailOfMonth={this.showDetailOfMonth} />}
             {/*<button onClick={() => this.download()}>Download</button>*/}

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Radium from "radium";
 import styles from "./styles";
-import category from "../../settings/category";
 import _isUndefined from 'lodash/isUndefined';
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -11,13 +10,20 @@ import "firebase/database";
 import "firebase/auth";
 import "firebase/firestore";
 import eventEmitter from "../../eventTracking/eventEmitter";
+import CategoryTable from "../inputContent/categoryTable/categoryTable";
+import AccountTable from "../inputContent/accountTable/accountTable";
 
 const initialState = {
   theItems: [],
   isEdit: '',
   editCategory: '',
   editValue: '',
-  editContent: ''
+  editContent: '',
+  editAccount: '',
+  accountList: [],
+  inputCategory: '',
+  isOpenCategoryTable: false,
+  isOpenAccountTable: false
 };
 
 
@@ -34,19 +40,23 @@ class Content extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.items !== this.state.theItems) {
-      let initalIsEdit = [];
+      let initialIsEdit = [];
       let category = [];
       let content = [];
       let value = [];
+      let account = [];
+      this.getAccountList();
       prevProps.items.map((item, idx) => {
-        initalIsEdit[idx] = false;
+        initialIsEdit[idx] = false;
+        account[idx] = prevProps.items[idx].accountClass;
         category[idx] = prevProps.items[idx].itemClass;
         content[idx] = prevProps.items[idx].itemValue;
         value[idx] = prevProps.items[idx].itemContent;
       });
       this.setState({
         theItems: prevProps.items,
-        isEdit: initalIsEdit,
+        isEdit: initialIsEdit,
+        editAccount: account,
         editCategory: category,
         editValue: content,
         editContent: value
@@ -55,25 +65,20 @@ class Content extends Component {
   }
 
   componentDidMount() {
-    const {items} = this.props;
-    let initalIsEdit = [];
-    let category = [];
-    let content = [];
-    let value = [];
+    this.getAccountList();
+  }
 
-    items.map((item, idx) => {
-      initalIsEdit[idx] = false;
-      category[idx] = items[idx].itemClass;
-      content[idx] = items[idx].itemValue;
-      value[idx] = items[idx].itemContent;
+  getAccountList = () =>{
+    const {account} = this.props;
+    const self = this;
+    let getAccountCategory = firebase.database().ref(`account/${account}`);
+    getAccountCategory.once('value').then((snapshot) => {
+      if(!snapshot.val()){
+        return;
+      }
+      let accountList = snapshot.val().accountCategory;
+      self.setState({accountList:accountList})
     });
-    this.setState({
-      theItems: items,
-      isEdit: initalIsEdit,
-      editCategory: category,
-      editValue: content,
-      editContent: value
-    })
   }
 
   isEdit = (idx) => {
@@ -83,11 +88,11 @@ class Content extends Component {
   }
 
   editFinish = (timestamp, idx) => {
-    const {editCategory, editValue, editContent} = this.state;
+    const {editCategory, editValue, editContent, editAccount} = this.state;
     const {account, updateItemCallback, dateTime} = this.props;
     let setDate = firebase.database().ref(`expense/${account}/${timestamp}`);
     editContent[idx] = _isUndefined(editContent[idx]) ? '' : editContent[idx];
-    setDate.update({itemClass: editCategory[idx], itemValue: editValue[idx], itemContent: editContent[idx]});
+    setDate.update({accountClass: editAccount[idx], itemClass: editCategory[idx], itemValue: editValue[idx], itemContent: editContent[idx]});
     eventEmitter.dispatch('itemEdit', dateTime.toString());
     updateItemCallback && updateItemCallback(dateTime);
     this.isEdit(idx);
@@ -95,7 +100,7 @@ class Content extends Component {
   editCategory = (category, idx) => {
     const {editCategory} = this.state;
     editCategory[idx] = category;
-    this.setState({editCategory: editCategory});
+    this.setState({editCategory: editCategory, isOpenCategoryTable: false});
   };
   editValue = (value, idx) => {
     const {editValue} = this.state;
@@ -108,9 +113,29 @@ class Content extends Component {
     this.setState({editContent: editContent});
   };
 
-  render() {
-    const {theItems, isEdit, editCategory, editValue, editContent} = this.state;
+  editAccount = (account, idx) => {
+    const {editAccount} = this.state;
+    editAccount[idx] = account;
+    this.setState({editAccount: editAccount, isOpenAccountTable: false});
+  };
 
+  closeCategoryList = () => this.setState({ isOpenCategoryTable: false});
+
+  closeAccountList = () => this.setState({ isOpenAccountTable: false});
+
+  openCategoryList = () => {
+    if(this.state.isOpenAccountTable) return;
+    this.setState({isOpenCategoryTable: true});
+  };
+
+  openAccountList = () => {
+    if(this.state.isOpenCategoryTable) return;
+    this.setState({isOpenAccountTable: true});
+  };
+
+  render() {
+    const {theItems, isEdit, editCategory, editValue, editContent, editAccount, isOpenCategoryTable, isOpenAccountTable} = this.state;
+    const {account} = this.props;
     return (
       <div style={{...styles.items, textAlign: 'left'}}>
         {theItems && theItems.map((c, idx) => (
@@ -131,14 +156,13 @@ class Content extends Component {
               justifyContent: 'flex-start',
               width: '100%'
             }}>
-              <li style={{...styles.item, listStyleType: 'none'}} key={'editItem' + idx}>
+              <li style={{...styles.item, padding: isOpenCategoryTable || isOpenAccountTable ? '0%' : '0% 1%', listStyleType: 'none'}} key={'editItem' + idx}>
+                <label style={styles.editTitle}>帳戶: </label>
+                <div style={{...styles.styleOfSelectCategory, border:'2px solid #ffbf00', width: '30%'}} onClick={()=>this.openAccountList()}>{editAccount[idx]}</div>
+                {isOpenAccountTable && <AccountTable account={account} idx={idx}  closeCallback={() => this.closeAccountList()} selectCallback={this.editAccount}/>}
                 <label style={styles.editTitle}>類別: </label>
-                <select className='category' style={styles.selectFrame} id="category" value={editCategory[idx]}
-                        onChange={(c) => this.editCategory(c.target.value, idx)}>
-                  {category['CATEGORY'].map((c, i) => (
-                    <option key={'category' + i} value={c}>{c}</option>
-                  ))}
-                </select>
+                <div style={{...styles.styleOfSelectCategory,width: '30%'}} onClick={()=>this.openCategoryList()}>{editCategory[idx]}</div>
+                {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} idx={idx} selectCallback={this.editCategory}/>}
                 <label style={styles.editTitle}>費用: </label>
                 <input type="text" style={styles.inputFrame} value={editValue[idx]} ref={(value) => {
                   this.value = value;

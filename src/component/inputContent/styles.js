@@ -1,5 +1,3 @@
-import React from "react";
-
 export default {
   inputContainer: {
     height: '45px',

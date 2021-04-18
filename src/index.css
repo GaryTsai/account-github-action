@@ -39,3 +39,6 @@ div::-webkit-scrollbar {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+input {
+  font-size: initial;
+}

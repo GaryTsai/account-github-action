@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import accountList from './account'
 import styles from "./styles";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
@@ -25,7 +24,6 @@ class accountTable extends Component {
   componentDidMount() {
     const {account} = this.props;
     const self = this;
-    let accountList = [];
     let getAccountCategory = firebase.database().ref(`account/${account}`);
     getAccountCategory.once('value').then((snapshot) => {
       if(!snapshot.val()){
@@ -53,7 +51,6 @@ class accountTable extends Component {
     const {account} = this.props;
     const {accountList} = this.state;
     accountList.push(this.state.newAccount);
-    console.log(accountList);
     let setAccountCategory = firebase.database().ref(`account/${account}`);
     setAccountCategory.update({accountCategory: accountList});
     this.setState({newAccount: '', isAddOpen: false})
@@ -63,7 +60,7 @@ class accountTable extends Component {
     const {account} = this.props;
     const {accountList} = this.state;
     let index = accountList.indexOf(acc);
-    if(index != -1){
+    if(index !== -1){
       accountList.splice(index,1);
     }
     let setAccountCategory = firebase.database().ref(`account/${account}`);
@@ -74,7 +71,7 @@ class accountTable extends Component {
 
   render() {
     const {isAddOpen, accountList} = this.state
-    const {closeCallback, selectCallback} = this.props;
+    const {closeCallback, selectCallback, idx} = this.props;
     return (
       <div style={{
         position: 'absolute',
@@ -98,7 +95,7 @@ class accountTable extends Component {
             <div key={'accountFrame' + c}
               style={{...styles.selectAccount}}
             >
-              <p style={{cursor: 'pointer', position: 'relative', margin: '5px 0px', width: '80%'}} onClick={()=>selectCallback(accountList[c])}>{accountList[c]}</p>
+              <p style={{cursor: 'pointer', position: 'relative', margin: '5px 0px', width: '80%'}} onClick={()=>selectCallback(accountList[c], idx)}>{accountList[c]}</p>
               <div key={'accountDelete' + c} style={styles.delete} onClick={(e) => this.deleteAccount(accountList[c], e)}/>
             </div>
         )}

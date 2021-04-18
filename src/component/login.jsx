@@ -19,7 +19,6 @@ const initialState = {
   email:''
 };
 
-var loginSubmit = document.getElementById('#item-login-submit');
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -203,7 +202,7 @@ export default class Login extends Component {
         zIndex: 7,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }}>
-        <div style={styles.loginFrame}  style={{height:"100%", width: '100%', background:'white', zIndex:5,
+        <div style={{...styles.loginFrame, height:"100%", width: '100%', background:'white', zIndex:5,
           opacity:'1', minWidth:'349px', boxShadow: '0 0 1em #484848', fontFamily: 'sans-serif',
           display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'fixed'
         }}>
@@ -241,7 +240,7 @@ export default class Login extends Component {
             {loginStatus !== 'forgetPWD' && <div>
               <div className="OpenIdLoginModule">
                   <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
-                    <img style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
+                    <img alt={'google logo'} style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
                       <div>
                         {loginStatus === 'login' ? '以 Google 登入': '以 Google 註冊並登入' }
                       </div>
@@ -249,14 +248,14 @@ export default class Login extends Component {
               </div>
               <div className="OpenIdLoginModule">
                 <div className="oauth-google-inner" onClick={() => this.signInWithFaceBookAccount()}>
-                  <img style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
+                  <img alt={'facebook logo'} style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
                   <div>
                     {loginStatus === 'login' ? '以 FaceBook 登入': '以 FaceBook 註冊並登入' }
                   </div>
                 </div>
               </div>
               {loginStatus === 'register' && <div className="tooltip">
-                <img style={styles.icon}  src={require('./../assets/img/alert-icon.png')}/>
+                <img alt={'alert icon'} style={styles.icon}  src={require('./../assets/img/alert-icon.png')}/>
                 <span className="tooltiptext">Regardless of Faccebook or Google, the same email can only be registered once</span>
               </div>}
               </div>}

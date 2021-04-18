@@ -14,12 +14,12 @@ class categoryTable extends Component {
   }
 
   render() {
-    const {closeCallback, selectCallback} = this.props;
+    const {closeCallback, selectCallback, idx} = this.props;
     return (
       <div style={{
         position: 'absolute',
         display: 'inline-flex',
-        height:  'calc(100% - 286px)',
+        height:  window.screen.width <= 500 ? 'calc(100% - 291px)' : 'calc(100% - 295px)',
         width: 'calc(100% - 4px)',
         zIndex: 7,
         bottom: '2px',
@@ -46,7 +46,7 @@ class categoryTable extends Component {
               cursor: 'pointer',
                 ...styles.selectCategory
               }}
-              onClick={()=>selectCallback(category[c].className)}
+              onClick={()=>selectCallback(category[c].className, idx)}
             >
               <div key={'category' + c}
                  style={{

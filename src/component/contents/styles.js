@@ -119,5 +119,32 @@ export default {
     padding: '0% 1%',
     borderBottom: '1px solid gray',
     justifyContent: 'space-between'
-  }
+  },
+  styleOfSelectCategory:{
+    display: 'flex',
+    justifyContent: 'center',
+    height: '26px',
+    alignItems: 'center',
+    background: '#ffffff',
+    cursor: 'pointer',
+    fontSize: '14px',
+    borderRadius: '10px',
+    margin: '5px',
+    boxShadow: 'rgb(0 0 0 / 20%) 0px 8px 15px',
+    transition: 'all 0.3s ease 0s',
+    outline: 'none',
+    border: '2px solid rgb(0, 150, 136)',
+    whiteSpace: 'nowrap'
+  },
+  selectAccount:{
+    backgroundColor: 'white',
+    margin: '8px',
+    padding: '5px',
+    display: 'inline-flex',
+    textAlign: 'center',
+    borderRadius: '15px',
+    border: '2px solid #4376ff',
+    justifyContent: 'center',
+    width: '40%'
+  },
 }

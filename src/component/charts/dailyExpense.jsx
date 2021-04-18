@@ -3,7 +3,6 @@ import Radium from "radium";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_material from "@amcharts/amcharts4/themes/material";
-import am4themes_animated from "@amcharts/amcharts4/themes/material";
 import "react-circular-progressbar/dist/styles.css";
 
 // import DatePicker from "react-datepicker";
@@ -306,7 +305,6 @@ class DailyExpense extends Component {
     if(chart)
       chart= null;
     am4core.useTheme(am4themes_material);
-    console.log(type);
     switch (type) {
       case "dailyExpense":
         am4core.unuseTheme(am4themes_material);
@@ -320,8 +318,10 @@ class DailyExpense extends Component {
         am4core.useTheme(am4themes_material);
         chart = am4core.create("account-expense", am4charts.PieChart);
         return this.getAccountPieChart();
+      default:
+        return;
     }
-  }
+  };
 
   componentDidMount() {
     const {type} = this.state;
@@ -366,7 +366,7 @@ class DailyExpense extends Component {
   };
 
   render() {
-    const {time, isOpen, type} = this.state;
+    const {time, type} = this.state;
     return (
       <div style={{ background:'#ffffff'}}>
         <div className="App">
