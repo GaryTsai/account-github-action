@@ -25,5 +25,19 @@ export default {
       opacity: 0.8,
       backgroundColor: '#d5d4ec'
     },
+  },
+  snapShotButton: {
+    height: '35px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ec3718',
+    color: 'white',
+    borderRadius: '15px',
+    border: '2px solid #a00404',
+    margin: '5px',
+    float: 'right',
+    outline: 'none',
+    cursor: 'pointer'
   }
 }

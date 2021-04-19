@@ -4,7 +4,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_material from "@amcharts/amcharts4/themes/material";
 import "react-circular-progressbar/dist/styles.css";
-
+import html2canvas from 'html2canvas';
 // import DatePicker from "react-datepicker";
 import DatePicker from 'react-mobile-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
@@ -321,7 +321,7 @@ class DailyExpense extends Component {
       default:
         return;
     }
-  };
+  }
 
   componentDidMount() {
     const {type} = this.state;
@@ -361,6 +361,33 @@ class DailyExpense extends Component {
   selectChart = (type) => {
     this.setState({ type: type }, () => this.getChart(type));
   }
+
+  snapShot = async() => {
+    let dataUrl = await html2canvas(document.getElementById('chart-page'), {
+      scale: window.devicePixelRatio,
+      logging: false
+    }).then(canvas => {
+      return canvas.toDataURL()
+    });
+    if (typeof dataUrl === 'string') {
+      let download = document.createElement('a');
+      download.setAttribute('href', dataUrl);
+      download.setAttribute('download', 'chart.png');
+      if (download.createEvent) {
+        const event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        download.dispatchEvent(event);
+      } else {
+        download.style.display = 'none';
+        document.body.appendChild(download);
+        download.click();
+        document.body.removeChild(download);
+      }
+    }
+    console.log('399');
+
+  };
+
   getChartHeight = () =>{
     return window.innerHeight - 44 - 26.5 - 40 -32
   };
@@ -394,6 +421,7 @@ class DailyExpense extends Component {
             onSelect={this.handleSelect}
             dateConfig={dateConfig}
             onCancel={this.handleCancel} />
+          <button onClick={this.snapShot} style={styles.snapShotButton}>圖表分析(截圖)</button>
         </div>
         <div id="chart-page">
         {type === 'dailyExpense' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
