@@ -8,8 +8,10 @@ import html2canvas from 'html2canvas';
 // import DatePicker from "react-datepicker";
 import DatePicker from 'react-mobile-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-
+import saveAs from 'file-saver'
 import utils from "../../utils/dateFormat";
+import browserUtils from "../../utils/browserUtils";
+
 import styles from "./styles";
 var chart;
 
@@ -359,33 +361,25 @@ class DailyExpense extends Component {
   }
 
   selectChart = (type) => {
-    this.setState({ type: type }, () => this.getChart(type));
+    this.setState({type: type}, () => this.getChart(type));
   }
 
-  snapShot = async() => {
-    let dataUrl = await html2canvas(document.getElementById('chart-page'), {
-      scale: window.devicePixelRatio,
-      logging: false
-    }).then(canvas => {
-      return canvas.toDataURL()
-    });
-    if (typeof dataUrl === 'string') {
-      let download = document.createElement('a');
-      download.setAttribute('href', dataUrl);
-      download.setAttribute('download', 'chart.png');
-      if (download.createEvent) {
-        const event = document.createEvent('MouseEvents');
-        event.initEvent('click', true, true);
-        download.dispatchEvent(event);
-      } else {
-        download.style.display = 'none';
-        document.body.appendChild(download);
-        download.click();
-        document.body.removeChild(download);
-      }
-    }
-    console.log('399');
+  savePhoto = () => this.snapshot( dataUrl => {
+    return saveAs(dataUrl,'chart.png');
+  });
 
+  canvasToBlob = canvas => canvas.msToBlob ? canvas.msToBlob() : canvas.toDataURL('image/png');
+
+  snapshot = (callback) => {
+    html2canvas(this.chartContent, {
+      dpi: 216,
+      scale: 2,
+      logging: false,
+      width: this.chartContent.offsetWidth,
+      height: this.getChartHeight()
+    }).then(canvas => {
+      canvas && callback(this.canvasToBlob(canvas))
+    });
   };
 
   getChartHeight = () =>{
@@ -421,9 +415,9 @@ class DailyExpense extends Component {
             onSelect={this.handleSelect}
             dateConfig={dateConfig}
             onCancel={this.handleCancel} />
-          <button onClick={this.snapShot} style={styles.snapShotButton}>圖表分析(截圖)</button>
+          {!browserUtils.isMobile() && <button onClick={this.savePhoto} style={styles.snapShotButton}>圖表分析(截圖)</button>}
         </div>
-        <div id="chart-page">
+        <div id="chart-page"  ref={chart => this.chartContent = chart}>
         {type === 'dailyExpense' && <div id="daily-expense" style={{ width: "100%", height: this.getChartHeight(), ...styles.userSelect }}/>}
         {type === 'categoryExpense' && <div id="category-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
         {type === 'accountExpense' && <div id="account-expense" style={{ width: "100%", height: this.getChartHeight(), transform: 'scale(0.8)', ...styles.userSelect}}/>}
