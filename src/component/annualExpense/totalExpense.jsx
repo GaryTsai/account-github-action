@@ -72,7 +72,7 @@ class InputContent extends Component {
             <li style={{listStyleType: 'none', ...styles.styleOfYear}}>{c + '年 : '}{AnnualCost[c]}$NT</li>}
             {Object.keys(AnnualMonthCost[c]).map((d, idx) => (
               AnnualMonthCost[c][idx] !== 0 &&
-              <li style={{listStyleType: 'none', ...styles.styleOfMonth}} key={'monthOfCost' + idx}
+              <li style={{listStyleType: 'none', ...styles.styleOfMonth}} key={'monthOfCost' + c + idx}
                   onClick={() => detailOfMonth([c, idx])}>{idx + 1 + '月 : ' + AnnualMonthCost[c][idx]}$NT</li>
             ))}
           </div>
