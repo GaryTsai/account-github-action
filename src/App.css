@@ -13,8 +13,8 @@
   box-sizing: border-box;
 }
 .App {
-  text-size-adjust: none;
-  -webkit-text-size-adjust: none;
+  text-size-adjust: 100%;
+  webkit-text-size-adjust: 100%;
   min-width: 360px;
 }
 .OpenIdLoginModule{
