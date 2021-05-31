@@ -164,7 +164,7 @@ class Content extends Component {
                 <div style={{...styles.styleOfSelectCategory,width: '30%'}} onClick={()=>this.openCategoryList()}>{editCategory[idx]}</div>
                 {isOpenCategoryTable && <CategoryTable closeCallback={() => this.closeCategoryList()} idx={idx} selectCallback={this.editCategory}/>}
                 <label style={styles.editTitle}>費用: </label>
-                <input type="text" style={styles.inputFrame} value={editValue[idx]} ref={(value) => {
+                <input type="tel" style={styles.inputFrame} value={editValue[idx]} ref={(value) => {
                   this.value = value;
                 }}
                        onChange={(c) => this.editValue(c.target.value, idx)}/>
