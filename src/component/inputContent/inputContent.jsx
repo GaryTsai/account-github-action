@@ -227,7 +227,7 @@ class InputContent extends Component {
             <input type="text"
                    style={styles.styleOfInput}
                    value={monthOfBudget}
-                   onChange={(c) => this.inputBudget(c.target.value)}/>
+                   onChange={(c) => this.inputBudget(c.target.value)} inputmode="numeric" />
                    <span style={styles.span}> $NT</span>
           </div>}
           {!this.isSmallDevices() &&<span style={{...styles.span, whiteSpace: 'nowrap'}}>剩餘預算/天: <span
@@ -240,10 +240,10 @@ class InputContent extends Component {
             width: '50%'
           }}>
             <span style={styles.span}>預估預算: </span>
-            <input type="tel"
+            <input type="text"
                    style={styles.styleOfInput}
                    value={monthOfBudget}
-                   onChange={(c) => this.inputBudget(c.target.value)}/>
+                   onChange={(c) => this.inputBudget(c.target.value)} inputmode="numeric" />
             <span style={styles.span}> $NT</span>
           </div>
           <span style={{...styles.span, width: '50%', whiteSpace: 'nowrap'}}>剩餘預算/天: <span
@@ -263,8 +263,8 @@ class InputContent extends Component {
             <input type="text" style={styles.inputFrame} value={this.state.inputContent}
                    onChange={(c) => this.inputContent(c.target.value)}/>
             <label style={styles.inputTitle}>費用: </label>
-            <input type="tel" style={styles.inputFrame} value={this.state.inputValue}
-                   onChange={(c) => this.inputValue(c.target.value)}/>
+            <input type="text" style={styles.inputFrame} value={this.state.inputValue}
+                   onChange={(c) => this.inputValue(c.target.value)} inputmode="numeric" />
             {!isSmallDevice && <button type="submit" key={"item-submit"} style={{...styles.submit,margin: '0px 5px', borderRadius: '10px'}} onClick={() => this.submitContent()}>儲存
             </button>}
           </div>
