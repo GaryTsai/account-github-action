@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styles from "./inputContent/styles";
+import {Route, Link} from 'react-router-dom'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
 // If you enabled Analytics in your project, add the Firebase SDK for Analytics
@@ -238,14 +239,15 @@ export default class Login extends Component {
               </div>}
             {loginStatus === 'forgetPWD' && <span style={{display: 'block', fontWeight: 'bold',padding: '20px'}}>請至填入的mail信箱重設您的密碼</span>}
             {loginStatus !== 'forgetPWD' && <div>
-              <div className="OpenIdLoginModule">
-                  <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
+              <Route path='/'><Link to='/' style={{'text-decoration': 'none'}}><div className="OpenIdLoginModule">
+              <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
                     <img alt={'google logo'} style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
                       <div>
                         {loginStatus === 'login' ? '以 Google 登入': '以 Google 註冊並登入' }
                       </div>
                   </div>
-              </div>
+              </div></Link>
+              </Route>
               <div className="OpenIdLoginModule">
                 <div className="oauth-google-inner" onClick={() => this.signInWithFaceBookAccount()}>
                   <img alt={'facebook logo'} style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
