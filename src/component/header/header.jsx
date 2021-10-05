@@ -22,22 +22,22 @@ export default class InputContent extends Component {
     switch (route) {
       case 'record':
         return <Route path='/'><div>
-            <Link to='/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/chart'><img style={{...styles.chartImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('chart')} src={require('../../assets/img/chart.png')}/></Link>
+            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
+            <Link to='/account/chart'><img style={{...styles.chartImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('chart')} src={require('../../assets/img/chart.png')}/></Link>
             </div></Route>;
       case 'total':
         return <Route path='/'><div>
-            <Link to='/'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <Link to='/account/'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
           </div></Route>;
       case 'detailOfMonth':
         return <Route path='/'><div>
-            <Link to='/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
+            <Link to='/account/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
           </div></Route>;
       case 'chart':
         return <Route path='/'><div>
-            <Link to='/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
+            <Link to='/account/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
           </div></Route>;
       default:
         return
@@ -53,7 +53,7 @@ export default class InputContent extends Component {
         <div style={styles.header}>
           {<div style={{position: 'relative'}}>
             {this.getImage(route)}
-            {<div style={{position: 'relative'}}><Route path='/'><Link to='/login'><img style={{...styles.logoutImg, right:'0px'}} alt="" onClick={()=>this.props.logOut()} src={require('../../assets/img/logout.png')}/></Link></Route>
+            {<div style={{position: 'relative'}}><Route path='/'><Link to='/account/login'><img style={{...styles.logoutImg, right:'0px'}} alt="" onClick={()=>this.props.logOut()} src={require('../../assets/img/logout.png')}/></Link></Route>
             </div>}
           </div>}
           <div style={styles.ctime}>現在時間: {currentTime}</div>
