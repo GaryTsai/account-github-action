@@ -383,7 +383,7 @@ class DailyExpense extends Component {
   };
 
   getChartHeight = () =>{
-    return window.innerHeight - 44 - 26.5 - 40 -32
+    return window.innerHeight - 44 - 26.5 - 50 -32
   };
 
   render() {

@@ -23,7 +23,6 @@ export default class Powered extends Component {
         bottom: '0px',
         position: 'inherit',
         width: '100%',
-        height: '40px'
       }}>
         <div style={{
           width: 'calc(100% - 4px)',
@@ -31,11 +30,12 @@ export default class Powered extends Component {
           backgroundColor: 'white',
           background: '#ff7600',
           color: 'white',
-          bottom: '2px',
+          bottom: '1px',
           fontSize: '12px',
           textAlign: 'center',
           position: 'fixed',
-          padding: '1.5vh 0%'
+          padding: '1.5vh 0%',
+          borderBottom: '2px solid rgb(0, 185, 156)'
         }}>Copyright© {year} Gary
           Tsai
         </div>

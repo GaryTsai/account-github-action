@@ -292,7 +292,7 @@ export default class App extends Component {
 
     return (
       <div className="App" style={{
-        height: window.innerHeight - 4 + 'px',
+        height: window.innerHeight + 'px',
         margin: '0 auto',
         fontFamily: 'cursive'
       }}>
@@ -312,7 +312,7 @@ export default class App extends Component {
           top: 'calc(50% - 50px)'
         }} src={require('./assets/img/loading.gif')}/></div>}
         <div>{route ==='login' && <LogIn eventEmitter={eventEmitter} loginCallback={this.login}/>}</div>
-        <header  style={{height: window.innerHeight + 'px'}} className="App-header">
+        <header className="App-header">
           <div style={{
             width: '100%',
             margin: '0 auto',

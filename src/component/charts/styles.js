@@ -36,7 +36,7 @@ export default {
     borderRadius: '15px',
     border: '2px solid #a00404',
     margin: '5px',
-    float: 'right',
+    float: 'left',
     outline: 'none',
     cursor: 'pointer'
   }
