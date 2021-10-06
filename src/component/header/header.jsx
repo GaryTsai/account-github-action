@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import styles from "./styles";
 const initialState = {
   currentTime: '',
@@ -22,22 +22,22 @@ export default class InputContent extends Component {
     switch (route) {
       case 'record':
         return <div>
-            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/account/chart'><img style={{...styles.chartImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('chart')} src={require('../../assets/img/chart.png')}/></Link>
+            <img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/>
+            <img style={{...styles.chartImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('chart')} src={require('../../assets/img/chart.png')}/>
             </div>;
       case 'total':
         return <div>
-            <Link to='/account/'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <img style={styles.costImg} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/>
           </div>;
       case 'detailOfMonth':
         return <div>
-            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/account/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/>
+            <img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/>
           </div>;
       case 'chart':
         return <div>
-            <Link to='/account/total'><img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/></Link>
-            <Link to='/account/'><img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/></Link>
+            <img style={styles.costImg} alt="" onClick={()=>this.props.changePage('total')}  src={require('../../assets/img/cost-list.png')}/>
+            <img style={{...styles.recordImg, zIndex: 5}} alt="" onClick={()=>this.props.changePage('record')} src={require('../../assets/img/record.png')}/>
           </div>;
       default:
         return

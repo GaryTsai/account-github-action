@@ -239,7 +239,7 @@ export default class Login extends Component {
               </div>}
             {loginStatus === 'forgetPWD' && <span style={{display: 'block', fontWeight: 'bold',padding: '20px'}}>請至填入的mail信箱重設您的密碼</span>}
             {loginStatus !== 'forgetPWD' && <div>
-              <Route path='/'><Link to='/account/' style={{'text-decoration': 'none'}}><div className="OpenIdLoginModule">
+              <Link to='/account/' style={{'text-decoration': 'none'}}><div className="OpenIdLoginModule">
               <div className="oauth-google-inner" onClick={() => this.signInWithGoogleAccount()}>
                     <img alt={'google logo'} style={styles.icon} src={require('./../assets/img/GGL_logo_googleg_18.png')}/>
                       <div>
@@ -247,7 +247,6 @@ export default class Login extends Component {
                       </div>
                   </div>
               </div></Link>
-              </Route>
               <div className="OpenIdLoginModule">
                 <div className="oauth-google-inner" onClick={() => this.signInWithFaceBookAccount()}>
                   <img alt={'facebook logo'} style={styles.icon} src={require('./../assets/img/facebook-icon.png')}/>
