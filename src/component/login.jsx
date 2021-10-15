@@ -417,7 +417,10 @@ export default class Login extends Component {
             )}
             {loginStatus !== "forgetPWD" && (
               <div>
-                <Link to="/account/" style={{ textDecoration: "none" }}>
+                <Link
+                  to="/account-github-action/"
+                  style={{ textDecoration: "none" }}
+                >
                   <div className="OpenIdLoginModule">
                     <div
                       className="oauth-google-inner"
