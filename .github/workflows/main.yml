@@ -31,7 +31,7 @@ jobs:
       # Ignore the set-env
       - name: Set Actions Allow Unsecure Commands
         run: |
-          echo "::set-env name=DEPLOYMENT_STATUS::skipped"
+          echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
           
       # Install Node JS environment
       - name: Use Node.js ${{ matrix.node-version }}
