@@ -2,7 +2,7 @@
   "name": "account",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://garytsai.github.io/account/",
+  "homepage": "https://garytsai.github.io/account-github-action/",
   "dependencies": {
     "@amcharts/amcharts4": "^4.9.26",
     "file-saver": "^2.0.5",
