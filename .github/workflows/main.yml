@@ -28,10 +28,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Ignore the set-env
-      - name: Set Actions Allow Unsecure Commands
-        run: |
-          echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
           
       # Install Node JS environment
       - name: Use Node.js ${{ matrix.node-version }}
@@ -45,6 +41,10 @@ jobs:
           npm install
           npm run build
           
+      # Ignore the set-env
+      - name: Set Actions Allow Unsecure Commands
+        run: |
+          echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV          
       # Use thie action to deploy
       - name: Commit garytsai to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.5.9
