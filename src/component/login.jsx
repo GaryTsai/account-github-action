@@ -284,7 +284,15 @@ export default class Login extends Component {
           zIndex: 7,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
-      >
+      >   <div style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        maxWidth: "100%",
+        height: "50px",
+        background: "linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)",
+        fontSize: "24px"
+      }}>帳戶管理平台</div>
         <div
           style={{
             ...styles.loginFrame,
